@@ -6,6 +6,7 @@
 ## Group members
 Rebecca Huynh, Rebeccahuynh0
 Erik Wöhry, ErikWilhelmWohry
+Emil Fröding, Froding0
 
 ## Specifications
 
@@ -15,7 +16,7 @@ Rebecca Huynh, declare that I am the sole author of the content I add to this re
 
 Sherbal Al khouri, declare that I am the sole author of the content I add to this repository 
 
-Firstname Lastname, declare that I am the sole author of the content I add to this repository 
+Emil Fröding, declare that I am the sole author of the content I add to this repository 
 
 Firstname Lastname, declare that I am the sole author of the content I add to this repository
 
