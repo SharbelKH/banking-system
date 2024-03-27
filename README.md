@@ -5,7 +5,7 @@
 
 ## Group members
 Rebecca Huynh, Rebeccahuynh0
-
+Erik Wöhry, ErikWilhelmWohry
 
 ## Specifications
 
