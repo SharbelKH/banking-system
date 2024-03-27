@@ -19,4 +19,4 @@ Firstname Lastname, declare that I am the sole author of the content I add to th
 
 Firstname Lastname, declare that I am the sole author of the content I add to this repository
 
-Firstname Lastname, declare that I am the sole author of the content I add to this repository 
+Erik Wöhry, declare that I am the sole author of the content I add to this repository 
