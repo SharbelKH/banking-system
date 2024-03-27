@@ -1,7 +1,9 @@
 # Banking System
 
 ## Project description
-We will design a banking system 
+We will design a banking system that allows users to create bank-accounts 
+that is able to withdraw, deposit, check balance, transactions between users exc. 
+
 
 ### 
 
