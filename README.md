@@ -8,6 +8,7 @@ that is able to withdraw, deposit, check balance, transactions between users exc
 ### 
 
 ## Group members
+- Sherbal Al khouri, SharbelKH
 - Rebecca Huynh, Rebeccahuynh0
 - Erik Wöhry, ErikWilhelmWohry
 - Emil Fröding, Froding0
