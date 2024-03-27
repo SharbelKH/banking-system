@@ -14,7 +14,7 @@ that is able to withdraw, deposit, check balance, transactions between users exc
 - Jakob Skoglund, JakobSkoglund
 
 ## Specifications
-
+A banking system with a GIU will be implemented in C# for backend and WPF for frontend. A data base for customer data will be implemented in MySQL. The project will rely heavily on encapsulation and other object orientated principles. 
 
 ## Declaration section
 Rebecca Huynh, declare that I am the sole author of the content I add to this repository 
