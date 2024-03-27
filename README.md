@@ -6,10 +6,10 @@ We will design a banking system
 ### 
 
 ## Group members
--Rebecca Huynh, Rebeccahuynh0
--Erik Wöhry, ErikWilhelmWohry
--Emil Fröding, Froding0
--Jakob Skoglund, JakobSkoglund
+- Rebecca Huynh, Rebeccahuynh0
+- Erik Wöhry, ErikWilhelmWohry
+- Emil Fröding, Froding0
+- Jakob Skoglund, JakobSkoglund
 
 ## Specifications
 
