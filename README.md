@@ -27,3 +27,7 @@ Emil Fröding, declare that I am the sole author of the content I add to this re
 Jakob Skoglund, declare that I am the sole author of the content I add to this repository
 
 Erik Wöhry, declare that I am the sole author of the content I add to this repository 
+
+# Our kanban board
+[Link to kanban board](https://github.com/users/SharbelKH/projects/1/views/1)
+
