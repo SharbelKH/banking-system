@@ -13,7 +13,7 @@ Rebecca Huynh, Rebeccahuynh0
 ## Declaration section
 Rebecca Huynh, declare that I am the sole author of the content I add to this repository 
 
-Firstname Lastname, declare that I am the sole author of the content I add to this repository 
+Sherbal Al khouri, declare that I am the sole author of the content I add to this repository 
 
 Firstname Lastname, declare that I am the sole author of the content I add to this repository 
 
