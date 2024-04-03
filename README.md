@@ -6,7 +6,7 @@ The functionality of the system will include the following: create users, perfor
 The banking system shall keep track of the users and their accounts, also it will surveil for malificent activity for safety reason simulating real world scenario. (Such as abnormaly large withdrawal from an account).
 
 1. User Interface:
-..* Registration and login for customers and admin.
+- Registration and login for customers and admin.
 ..* Authentication for login for security.
 ..* Profile management to update personal information.
 2. Account Interface:
