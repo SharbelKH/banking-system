@@ -35,15 +35,15 @@ The banking system shall keep track of the users and their accounts, also it wil
 A banking system with a GIU will be implemented in C# for backend and WPF for frontend. A data base for customer data will be implemented in MySQL. The project will rely heavily on encapsulation and other object orientated principles. 
 
 ## Declaration section
-Rebecca Huynh, declare that I am the sole author of the content I add to this repository 
+I, Rebecca Huynh, declare that I am the sole author of the content I add to this repository 
 
-Sherbal Al khouri, declare that I am the sole author of the content I add to this repository 
+I, Sherbal Al khouri, declare that I am the sole author of the content I add to this repository 
 
-Emil Fröding, declare that I am the sole author of the content I add to this repository 
+I, Emil Fröding, declare that I am the sole author of the content I add to this repository 
 
-Jakob Skoglund, declare that I am the sole author of the content I add to this repository
+I, Jakob Skoglund, declare that I am the sole author of the content I add to this repository
 
-Erik Wöhry, declare that I am the sole author of the content I add to this repository 
+I, Erik Wöhry, declare that I am the sole author of the content I add to this repository 
 
 # Our kanban board
 [Link to kanban board](https://github.com/users/SharbelKH/projects/1/views/1)
