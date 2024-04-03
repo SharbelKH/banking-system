@@ -1,8 +1,25 @@
 # Banking System
 
 ## Project description
-We will design a banking system that allows users to create bank-accounts 
-that is able to withdraw, deposit, check balance, transactions between users exc. 
+We will design a banking system that manages users and their different bank accounts.
+The functionality of the system will include the following: create users, perform transactions, manage accounts, generate account activity history.
+The banking system shall keep track of the users and their accounts, also it will surveil for malificent activity for safety reason simulating real world scenario. (Such as abnormaly large withdrawal from an account).
+
+1. User Interface:
+..* Registration and login for customers and admin.
+..* Authentication for login for security.
+..* Profile management to update personal information.
+2. Account Interface:
+..* Create different accounts such as checkings, savings etc.
+..* Account history.
+3. Transactions:
+..* Support of transactions such as withdrawal, transfers between accounts, deposits etc.
+..* Transaction History.
+..* Transaction authentication with error handling.
+4. Banking System Administration:
+..* Manage users, accounts and transactions.
+..* Monitor suspitious activity
+
 
 
 ### 
