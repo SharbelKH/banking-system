@@ -7,18 +7,18 @@ The banking system shall keep track of the users and their accounts, also it wil
 
 1. User Interface:
 - Registration and login for customers and admin.
-..* Authentication for login for security.
-..* Profile management to update personal information.
+- Authentication for login for security.
+- Profile management to update personal information.
 2. Account Interface:
-..* Create different accounts such as checkings, savings etc.
-..* Account history.
+- Create different accounts such as checkings, savings etc.
+- Account history.
 3. Transactions:
-..* Support of transactions such as withdrawal, transfers between accounts, deposits etc.
-..* Transaction History.
-..* Transaction authentication with error handling.
+- Support of transactions such as withdrawal, transfers between accounts, deposits etc.
+- Transaction History.
+- Transaction authentication with error handling.
 4. Banking System Administration:
-..* Manage users, accounts and transactions.
-..* Monitor suspitious activity
+- Manage users, accounts and transactions.
+- Monitor suspitious activity
 
 
 
