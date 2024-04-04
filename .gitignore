@@ -4,3 +4,5 @@
 *.vsidx
 banksystem/BankApplication/BankApplication/bin/Debug/net6.0-windows7.0/
 banksystem/BankApplication/BankApplication/obj/Debug/net6.0-windows7.0/
+banksystem/BankApplication/BankApplication/obj/
+banksystem/BankApplication/.vs/
