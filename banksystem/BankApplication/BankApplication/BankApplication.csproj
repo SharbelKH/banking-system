@@ -10,6 +10,10 @@
 
   <ItemGroup>
     <Folder Include="Controller\" />
+    <Folder Include="logic\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="logic\" />
+  </ItemGroup>
 </Project>
