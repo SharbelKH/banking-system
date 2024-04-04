@@ -1,2 +1,5 @@
 #ignores all .bin files
 *.bin
+
+#ignores all  .exe files
+*.exe
