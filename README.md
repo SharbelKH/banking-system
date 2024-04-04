@@ -56,5 +56,3 @@ I, Erik Wöhry, declare that I am the sole author of the content I add to this r
 # Our kanban board
 [Link to kanban board](https://github.com/users/SharbelKH/projects/1/views/1)
 
-# Adding stuff that we dont want in the README file
-Hello world, this is very good program
