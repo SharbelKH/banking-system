@@ -24,7 +24,7 @@ The banking system shall keep track of the users and their accounts, also it wil
 ### Compilation and running instructions
 We are using a local database for our project using MySQL.
 Next to the README file we provide a script for creating a database which will be need to initialized on your local server.
-
+Navigate to the BankApplication.csproj file 
 How to compile: write 'dotnet build' command in .NET CLI
 How to run: write 'dotnet run'
 
