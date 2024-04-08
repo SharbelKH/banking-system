@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:BankApplication"
              StartupUri="View/Login.xaml">
     <Application.Resources>
-         
+       
+            
     </Application.Resources>
 </Application>
