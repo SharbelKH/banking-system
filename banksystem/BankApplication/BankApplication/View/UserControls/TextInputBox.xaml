@@ -18,7 +18,7 @@
 
         <Button x:Name="btnClear" Width="30" HorizontalAlignment="Left" Content="X"
                 Foreground="LightGray" BorderThickness="0" Background="Transparent"
-                Margin="220,0,0,0" Click="btnClear_Click"/>
+                Margin="220,0,0,0" Click="btnClear_Click" Cursor="Hand"/>
 
     </Grid>
 </UserControl>

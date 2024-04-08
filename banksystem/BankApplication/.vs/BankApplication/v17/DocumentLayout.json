@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|solutionrelative:bankapplication\\view\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|c:\\users\\woer22la\\onedrive - jonkoping university\\programming\\visualstudio\\c#\\2024\\bankproject\\banking-system\\banksystem\\bankapplication\\bankapplication\\view\\usercontrols\\textinputbox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|solutionrelative:bankapplication\\view\\usercontrols\\textinputbox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|c:\\users\\woer22la\\onedrive - jonkoping university\\programming\\visualstudio\\c#\\2024\\bankproject\\banking-system\\banksystem\\bankapplication\\bankapplication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|solutionrelative:bankapplication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|c:\\users\\woer22la\\onedrive - jonkoping university\\programming\\visualstudio\\c#\\2024\\bankproject\\banking-system\\banksystem\\bankapplication\\bankapplication\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|solutionrelative:bankapplication\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|c:\\users\\woer22la\\onedrive - jonkoping university\\programming\\visualstudio\\c#\\2024\\bankproject\\banking-system\\banksystem\\bankapplication\\bankapplication\\view\\usercontrols\\textinputbox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|solutionrelative:bankapplication\\view\\usercontrols\\textinputbox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D305B1E8-0EDE-416D-AED9-8EC050B9530D}|BankApplication\\BankApplication.csproj|c:\\users\\woer22la\\onedrive - jonkoping university\\programming\\visualstudio\\c#\\2024\\bankproject\\banking-system\\banksystem\\bankapplication\\bankapplication\\view\\usercontrols\\textinputbox.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,8 +34,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\woer22la\\OneDrive - Jonkoping University\\Programming\\VisualStudio\\C#\\2024\\BankProject\\banking-system\\banksystem\\BankApplication\\BankApplication\\App.xaml",
+              "RelativeDocumentMoniker": "BankApplication\\App.xaml",
+              "ToolTip": "C:\\Users\\woer22la\\OneDrive - Jonkoping University\\Programming\\VisualStudio\\C#\\2024\\BankProject\\banking-system\\banksystem\\BankApplication\\BankApplication\\App.xaml",
+              "RelativeToolTip": "BankApplication\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-05T14:04:11.496Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -46,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "TextInputBox.xaml.cs",
               "DocumentMoniker": "C:\\Users\\woer22la\\OneDrive - Jonkoping University\\Programming\\VisualStudio\\C#\\2024\\BankProject\\banking-system\\banksystem\\BankApplication\\BankApplication\\View\\UserControls\\TextInputBox.xaml.cs",
               "RelativeDocumentMoniker": "BankApplication\\View\\UserControls\\TextInputBox.xaml.cs",
@@ -58,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "TextInputBox.xaml",
               "DocumentMoniker": "C:\\Users\\woer22la\\OneDrive - Jonkoping University\\Programming\\VisualStudio\\C#\\2024\\BankProject\\banking-system\\banksystem\\BankApplication\\BankApplication\\View\\UserControls\\TextInputBox.xaml",
               "RelativeDocumentMoniker": "BankApplication\\View\\UserControls\\TextInputBox.xaml",
@@ -70,18 +86,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\woer22la\\OneDrive - Jonkoping University\\Programming\\VisualStudio\\C#\\2024\\BankProject\\banking-system\\banksystem\\BankApplication\\BankApplication\\MainWindow.xaml",
               "RelativeDocumentMoniker": "BankApplication\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\woer22la\\OneDrive - Jonkoping University\\Programming\\VisualStudio\\C#\\2024\\BankProject\\banking-system\\banksystem\\BankApplication\\BankApplication\\MainWindow.xaml",
               "RelativeToolTip": "BankApplication\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-04-03T18:48:24.147Z"
+              "WhenOpened": "2024-04-03T18:48:24.147Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\woer22la\\OneDrive - Jonkoping University\\Programming\\VisualStudio\\C#\\2024\\BankProject\\banking-system\\banksystem\\BankApplication\\BankApplication\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "BankApplication\\MainWindow.xaml.cs",
