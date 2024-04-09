@@ -7,14 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="250">
     <Grid Background="White">
+        
         <TextBox x:Name="txtInput" VerticalAlignment="Center" 
                  FontSize="14" FontWeight="Light" Background="Transparent"
-                 TextChanged="txtInput_TextChanged" Height="30"/>
+                 TextChanged="txtInput_TextChanged" Height="30" 
+                 HorizontalContentAlignment="Stretch"
+                 GotFocus="txtInput_GotFocus" LostFocus="txtInput_LostFocus"/>
         
         <TextBlock x:Name="tbPlaceholder" Text="{Binding Placeholder}"
                    FontSize="14" FontWeight="Light" Foreground="DarkGray"
+                   HorizontalAlignment="Stretch"
                    VerticalAlignment="Center" Panel.ZIndex="-1" Background="Transparent"
-                   Margin="5,0,0,0"/>
+                   Margin="5,0,0,0" IsHitTestVisible="False"/>
 
         <Button x:Name="btnClear" Width="30" HorizontalAlignment="Left" Content="X"
                 Foreground="LightGray" BorderThickness="0" Background="Transparent"

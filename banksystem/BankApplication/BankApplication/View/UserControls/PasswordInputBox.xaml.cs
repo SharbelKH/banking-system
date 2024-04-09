@@ -26,7 +26,7 @@ namespace BankApplication.View.UserControls
             set 
             { 
                placeholder = value; 
-               passwordInput.Password = placeholder;
+               tbPlaceholder.Text = placeholder;
             }
         
         }
@@ -37,5 +37,9 @@ namespace BankApplication.View.UserControls
             passwordInput.Focus();
         }
 
+        private void passwordInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tbPlaceholder.Visibility = Visibility.Collapsed;
+        }
     }
 }
