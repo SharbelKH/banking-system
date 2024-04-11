@@ -14,7 +14,9 @@ namespace BankApplication.View
 
         private void btn_Signup_Click(object sender, RoutedEventArgs e)
         {
-            //open signup window here
+            signup signUpWindow = new signup();
+            signUpWindow.Show();
+            this.Close();
         }
 
         private void btn_Login_Click(object sender, RoutedEventArgs e)
