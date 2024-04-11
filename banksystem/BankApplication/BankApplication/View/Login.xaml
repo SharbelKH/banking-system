@@ -19,14 +19,16 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <UserControls:TextInputBox x:Name="UsernameInput" Grid.Row="1" Width="250" Height="30" Placeholder="Username" 
-                                       Margin="53,39,85,39"/>
-            <UserControls:PasswordInputBox Grid.Row="2" Width="250" Height="30" Placeholder="Password" 
+            <UserControls:TextInputBox x:Name="UsernameIDInput" Grid.Row="1" Width="250" Height="30" 
+                                       Placeholder="UserID" Margin="53,39,85,39"/>
+            
+            <UserControls:PasswordInputBox x:Name="PasswordLoginInput" Grid.Row="2" Width="250" Height="30" Placeholder="Password" 
                                            Margin="53,39,85,40"/>
 
             <materialDesign:PackIcon Kind="User" Height="30" Width="30" Grid.Row="1" 
                                      Foreground="Black"  Margin="34,0,0,0" 
                                      VerticalAlignment="Center"/>
+            
             <materialDesign:PackIcon Kind="Lock" Height="30" Width="30" Margin="34,0,0,0" 
                                      Grid.Row="2" VerticalAlignment="Center"/>
 
