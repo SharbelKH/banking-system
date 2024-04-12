@@ -1,0 +1,30 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="logic/User.cs">
+    <Files>
+      <File FileName="MainWindow.xaml" />
+      <File FileName="MainWindow.xaml.cs" />
+      <File FileName="AssemblyInfo.cs" />
+      <File FileName="logic/User.cs" Line="50" Column="3" />
+      <File FileName="logic/BankingSystem.cs" />
+      <File FileName="logic/Transaction.cs" Line="8" Column="1" />
+      <File FileName="logic/Account.cs" Line="70" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BankApplication">
+            <Node name="BankApplication">
+              <Node name="logic" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

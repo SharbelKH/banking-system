@@ -13,8 +13,18 @@
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
   </ItemGroup>
 
+=======
+    <None Remove="logic\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="4.1.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+  </ItemGroup>
+>>>>>>> origin/empclasses
 </Project>
