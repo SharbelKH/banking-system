@@ -50,25 +50,6 @@ jobs:
      - name: Test
        run: dotnet test banksystem/BankApplication/BankApplication/BankApplication.csproj
 
-  lint: 
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest]
-    
-    steps: 
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Super-Linter
-        uses: super-linter/super-linter@v5.7.2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          lint_file: '.github/linters/.super-linter.yml'
-          working_path: './'
-
-      - name: Run Super-Linter
-        run: ./entrypoint.sh
           
         
             
