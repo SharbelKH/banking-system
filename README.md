@@ -1,6 +1,9 @@
 
 # Banking System
 
+## Project status
+![workflow](https://github.com/SharbelKH/banking-system/actions/workflows/dotnet.yml/badge.svg)
+
 ## Project description
 We will design a banking system that manages users and their different bank accounts.
 The functionality of the system will include the following: create users, perform transactions, manage accounts, generate account activity history.
