@@ -6,9 +6,9 @@ namespace BankApplication.logic
 	public class Account
 	{
 		// A uniqe accountId should be given and saved to the database 
-		public int accountId{get; }
-        public string accountType { get; }
-        public double balance { get; }
+		public int accountId{get; private set; }
+        public string accountType { get; private set; }
+        public double balance { get; private set; }
 
 
         public Account(string accountType)
@@ -22,6 +22,11 @@ namespace BankApplication.logic
 			if (amount <= 10000)
 			{
                 balance += amount;
+                return true;
+            }
+            else
+            {
+                return false;
             }
 			
 		}
@@ -40,57 +45,33 @@ namespace BankApplication.logic
 			}
 		}
 
-	}
 
 
 
-
-    public class SavingsAccount : Account
-    {
-        public SavingsAccount() : base("Savings") { }
-    }
-
-
-
-    public class CheckingAccount : Account
-    {
-        public CheckingAccount() : base("Checking") { }
-    }
-
-
-
-    public class RetirementAccount : Account
-    {
-        public RetirementAccount() : base("Retirement") { }
-    }
-
-
-
-
-    public void CreateAccount(string accountType)
-    {
-        Account = newAccount;
-        switch (accountType.ToLower())
-
+        public class SavingsAccount : Account
         {
-            case "savings":
-                newAccount = new SavingsAccount();
-                break;
-
-            case "retirement":
-                newAccount = new RetirementAccount();
-                break;
-
-            case "checking":
-                newAccount = new CheckingAccount();
-                break;
-
-            default:
-                throw new ArgumentException("Invalid account type. ");
+            public SavingsAccount() : base("Savings") { }
         }
 
-        
-    }
 
+
+        public class CheckingAccount : Account
+        {
+            public CheckingAccount() : base("Checking") { }
+        }
+
+
+
+        public class RetirementAccount : Account
+        {
+            public RetirementAccount() : base("Retirement") { }
+        }
+
+
+
+
+        
+
+    }
 }
 

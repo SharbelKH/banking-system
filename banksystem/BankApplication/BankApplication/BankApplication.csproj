@@ -10,10 +10,14 @@
 
   <ItemGroup>
     <Folder Include="Controller\" />
-    <Folder Include="logic\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="logic\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="4.1.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
   </ItemGroup>
 </Project>

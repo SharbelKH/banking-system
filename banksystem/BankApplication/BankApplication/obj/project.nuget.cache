@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "DAjNqQxgiM2uJm6+/q4X4NpFYJ51kc7bqrr24PCGsoymgljxi02pYABEolXsoBKyCE8UUJ8G13Oli7aefrIuyQ==",
+  "dgSpecHash": "TeRXeNlxvFpEtc/NdqDB9iCTMvYtUOyqMtRROGrVMZin+xZeZjqdi9ZSH3vS7neEMRTuIvkAS2O79TEpFu7iFg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\woer22la\\OneDrive - Jonkoping University\\Programming\\VisualStudio\\C#\\2024\\BankProject\\banking-system\\banksystem\\BankApplication\\BankApplication\\BankApplication.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Dator\\ProjectSoftware\\banking-system\\banksystem\\BankApplication\\BankApplication\\BankApplication.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dator\\.nuget\\packages\\nunit\\4.1.0\\nunit.4.1.0.nupkg.sha512",
+    "C:\\Users\\Dator\\.nuget\\packages\\nunit3testadapter\\4.5.0\\nunit3testadapter.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
