@@ -57,6 +57,9 @@ I, Jakob Skoglund, declare that I am the sole author of the content I add to thi
 
 I, Erik Wöhry, declare that I am the sole author of the content I add to this repository 
 
+### Built with
+[Material Design In XAML](http://materialdesigninxaml.net/) - Fully open source and one of the most popular GUI libraries for WPF.
+
 # Our kanban board
 [Link to kanban board](https://github.com/users/SharbelKH/projects/1/views/1)
 
