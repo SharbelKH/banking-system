@@ -23,30 +23,13 @@ namespace BankApplication.logic
             accounts = new List<Account>();
         }
 
-		public void AddAccount(string accountType)
-		{
-			Account = newAccount;
-			switch (accountType.ToLower())
-			{
-				case "savings":
-					newAccount = new SavingsAccount();
-					break;
 
-				case "retirement":
-					newAccount = new RetirementAccount();
-					break;
+        public void AddAccount(string accountType)
+        {
+            Account newAccount = Account.CreateAccount(accountType);
+            accounts.Add(newAccount);
+        }
 
-				case "checking":
-					newAccount = new CheckingAccount();
-					break;
-
-				default:
-					throw new ArgumentException("Invalid account type. "); 
-			}
-
-			accounts.Add(newAccount);
-		}
-
-	}
+    }
 }
 
