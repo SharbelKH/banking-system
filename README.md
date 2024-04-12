@@ -32,7 +32,10 @@ Navigate to the BankApplication.csproj file.
 How to compile: write 'dotnet build' command in .NET CLI
 How to run: write 'dotnet run'
 
-
+### Test and CLI instructions for running tests
+Navigate to the BankApplication.csproj file.
+How to run tests: write 'dotnet test'
+This will run the tests that are available for the project
 
 ### 
 
