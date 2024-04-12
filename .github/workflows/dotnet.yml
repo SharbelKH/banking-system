@@ -6,21 +6,47 @@ name: .NET
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
 
     runs-on: windows-latest
 
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: ${{ matrix.dotnet-version }}
+        
+    - name: Restore Dependencies
+      run: dotnet restore banksystem/BankApplication/BankApplication/BankApplication.csproj
+      
     - name: Build
       run: dotnet build banksystem/BankApplication/BankApplication/BankApplication.csproj
-    - name: Test
-      run: dotnet test banksystem/BankApplication/BankApplication/BankApplication.csproj
+      
+  test:
+    needs: build
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    
+    steps:
+     - uses: actions/checkout@v4
+     - name: Setup .NET
+       uses: actions/setup-dotnet@v4
+       with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+          
+     - name: Restore Dependencies
+       run: dotnet restore banksystem/BankApplication/BankApplication/BankApplication.csproj
+        
+     - name: Test
+       run: dotnet test banksystem/BankApplication/BankApplication/BankApplication.csproj
+  
