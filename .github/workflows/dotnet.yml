@@ -55,7 +55,8 @@ jobs:
 
     steps: 
       - name: Super-Linter
-        uses: super-linter/super-linter@v6.3.1
+        uses: super-linter/super-linter@v5.7.2
+          
         
             
   
