@@ -38,7 +38,7 @@ How to run tests: write 'dotnet test'
 This will run the tests that are available for the project
 
 ### Instructions on how to run the linter
-Whenever therese a push or pull request, the super linter will run in GitHub automatically
+Whenever there is a push or pull request, the super linter will run in GitHub automatically
 but if you want to run it manually, you can enter these 2 commands in a shell on your computer if you have a docker installed: 
 FIRST
 -----------------------------------------
