@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Data;
+using System.Windows;
+using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client.NativeInterop;
 
 namespace BankApplication.View
 {
@@ -11,6 +14,8 @@ namespace BankApplication.View
         {
             InitializeComponent();
         }
+        //change to your local database
+        string ConString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\rebec\\projects\\banking-system\\banksystem\\BankApplication\\BankApplication\\banksystem_database.mdf;Integrated Security=True";
 
         private void btn_Signup_Click(object sender, RoutedEventArgs e)
         {
@@ -21,7 +26,34 @@ namespace BankApplication.View
 
         private void btn_Login_Click(object sender, RoutedEventArgs e)
         {
-            //get user and open mainwindow
+            string userID = UsernameIDInput.TextString;
+            string password = PasswordLoginInput.passwordString;
+
+            if (AuthenticateUser(userID, password))
+            {
+                MessageBox.Show("login successful!");
+                //open main window connected with ID
+            }
+            else
+            {
+                MessageBox.Show("Invalid user ID or password!");
+            }
+        }
+        
+        private bool AuthenticateUser(string userID, string password)
+        {
+           
+            using (SqlConnection Con = new SqlConnection(ConString))
+            {
+                string query = "SELECT COUNT(*) FROM Account WHERE ID = @Id AND Password = @Password";
+                SqlCommand command = new SqlCommand(query, Con);
+                command.Parameters.AddWithValue("@Id", userID);
+                command.Parameters.AddWithValue("@Password", password);
+                Con.Open();
+                int count = (int)command.ExecuteScalar();
+                return count > 0;
+            }
+    
         }
     }
 }
