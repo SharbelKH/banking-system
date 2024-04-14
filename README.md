@@ -37,6 +37,34 @@ Navigate to the BankApplication.csproj file.
 How to run tests: write 'dotnet test'
 This will run the tests that are available for the project
 
+### Instructions on how to run the linter
+Whenever therese a push or pull request, the super linter will run in GitHub automatically
+but if you want to run it manually, you can enter these 2 commands in a shell on your computer if you have a docker installed: 
+FIRST
+-----------------------------------------
+docker pull github/super-linter:v5.7.2
+-----------------------------------------
+SECOND
+-----------------------------------------
+docker run --rm \
+    --volume "$(pwd):/tmp/lint" \
+    --workdir /tmp/lint \
+    -e DEFAULT_BRANCH=main \
+    -e GITHUB_TOKEN=YOUR_GITHUB_TOKEN \           --Replace YOUR_GITHUB_TOKEN with a personal access token that has the necessary permissions to access your repository. You can generate a personal access token in your GitHub account settings.
+    github/super-linter:v5.7.2
+-----------------------------------------
+If that doesnt work, you can try to run: 
+-----------------------------------------
+docker run \
+  -e LOG_LEVEL=DEBUG \
+  -e RUN_LOCAL=true \
+  -v /path/to/local/codebase:/tmp/lint \
+  --rm \
+  ghcr.io/super-linter/super-linter:latest
+-----------------------------------------
+
+
+
 ### 
 
 ## Group members
