@@ -23,9 +23,9 @@ namespace BankApplication.View.UserControls
         public string Placeholder
         {
             get { return placeholder; }
-            set 
-            { 
-                placeholder = value; 
+            set
+            {
+                placeholder = value;
                 tbPlaceholder.Text = placeholder;
                 //maybe there is a smarter way, ex onPropertyChanged()?
             }
@@ -35,7 +35,7 @@ namespace BankApplication.View.UserControls
         {
             if (string.IsNullOrEmpty(txtInput.Text))
                 tbPlaceholder.Visibility = Visibility.Visible;
-            else    
+            else
                 tbPlaceholder.Visibility = Visibility.Hidden;
         }
 
@@ -43,18 +43,18 @@ namespace BankApplication.View.UserControls
         {
             txtInput.Clear();
             txtInput.Focus();
-            tbPlaceholder.Visibility=Visibility.Visible;
+            tbPlaceholder.Visibility = Visibility.Visible;
         }
 
         private void txtInput_GotFocus(object sender, RoutedEventArgs e)
         {
-            tbPlaceholder.Visibility=Visibility.Collapsed;
+            tbPlaceholder.Visibility = Visibility.Collapsed;
         }
 
         private void txtInput_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtInput.Text))
-                tbPlaceholder.Visibility=Visibility.Visible;
+                tbPlaceholder.Visibility = Visibility.Visible;
         }
     }
 }

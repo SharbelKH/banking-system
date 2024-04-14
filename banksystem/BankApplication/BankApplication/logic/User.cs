@@ -1,7 +1,6 @@
 ﻿using System;
 namespace BankApplication.logic
 {
-   
     public class User
 	{
         private static int _nextUserId = 1;
@@ -13,7 +12,6 @@ namespace BankApplication.logic
 		public string email { get; private set; }
 		public string phoneNumber { get; private set; }
 		private List<Account> accounts;
-		
 
 		public User(int userId, string firstName, string lastName, string email, string phoneNumber, string password)
 		{
@@ -26,14 +24,11 @@ namespace BankApplication.logic
             this.phoneNumber = phoneNumber;
             accounts = new List<Account>();
         }
-
-
         public void AddAccount(string accountType)
         {
             Account newAccount = AccountFactory.CreateAccount(accountType);
             accounts.Add(newAccount);
         }
-
     }
 }
 

@@ -1,22 +1,17 @@
 ﻿using System;
 namespace BankApplication.logic
 {
-
-
-	public class Account
+    public class Account
 	{
 		// A uniqe accountId should be given and saved to the database 
-		public int accountId{get; private set; }
+		public int accountId { get; private set; }
         public string accountType { get; private set; }
         public double balance { get; private set; }
-
-
         public Account(string accountType)
 		{
 			this.accountType = accountType;
             // A uniqe accountId should be given and saved to the database 
         }
-
         public bool Deposit(double amount)
 		{
 			if (amount <= 10000)
@@ -28,9 +23,7 @@ namespace BankApplication.logic
             {
                 return false;
             }
-			
 		}
-
 		public bool Withdraw(double amount)
 		{
 			if (amount <= balance)
@@ -44,10 +37,6 @@ namespace BankApplication.logic
 
 			}
 		}
-
-
-
-
         public class SavingsAccount : Account
         {
             public SavingsAccount() : base("Savings") { }

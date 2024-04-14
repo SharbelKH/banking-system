@@ -5,6 +5,7 @@ namespace BankApplication.logic
 	{
 		public BankingSystem()
 		{
+
 		}
 	}
 }

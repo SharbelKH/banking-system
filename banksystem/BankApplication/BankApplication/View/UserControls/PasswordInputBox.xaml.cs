@@ -14,7 +14,7 @@ namespace BankApplication.View.UserControls
         }
 
         public string passwordString
-        { 
+        {
             get { return passwordInput.Password; }
         }
 
@@ -23,12 +23,11 @@ namespace BankApplication.View.UserControls
         public string Placeholder
         {
             get { return placeholder; }
-            set 
-            { 
-               placeholder = value; 
+            set
+            {
+               placeholder = value;
                tbPlaceholder.Text = placeholder;
             }
-        
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)

@@ -15,10 +15,10 @@ namespace BankApplication.View
         }
 
         string ConString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\rebec\\projects\\banking-system\\banksystem\\BankApplication\\BankApplication\\banksystem_database.mdf;Integrated Security=True";
-            
+
         private void btn_CreateUser_Click(object sender, RoutedEventArgs e)
         {
-            if(fullname.TextString == "" || phonenumber.TextString == "" || adress.TextString == "" || passwordinput.passwordString == "" )
+            if (fullname.TextString == "" || phonenumber.TextString == "" || adress.TextString == "" || passwordinput.passwordString == "")
             {
                 MessageBox.Show("Missing information, please check!");
             }
@@ -45,8 +45,6 @@ namespace BankApplication.View
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
-            
         }
-
     }
 }

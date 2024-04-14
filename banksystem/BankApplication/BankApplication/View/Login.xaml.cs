@@ -42,7 +42,6 @@ namespace BankApplication.View
         
         private bool AuthenticateUser(string userID, string password)
         {
-           
             using (SqlConnection Con = new SqlConnection(ConString))
             {
                 string query = "SELECT COUNT(*) FROM Account WHERE ID = @Id AND Password = @Password";
@@ -53,7 +52,6 @@ namespace BankApplication.View
                 int count = (int)command.ExecuteScalar();
                 return count > 0;
             }
-    
         }
     }
 }
