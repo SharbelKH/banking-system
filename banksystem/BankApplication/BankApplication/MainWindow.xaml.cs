@@ -11,6 +11,11 @@ using System.Windows.Shapes;
 
 namespace BankApplication
 {
+
+
+
+    //  Transaction
+    // Deposit
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -19,6 +24,11 @@ namespace BankApplication
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
