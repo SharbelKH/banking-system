@@ -14,9 +14,9 @@ namespace BankApplication.View
         {
             InitializeComponent();
         }
-        //change to your local database
-        string ConString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\rebec\\projects\\banking-system\\banksystem\\BankApplication\\BankApplication\\banksystem_database.mdf;Integrated Security=True";
 
+        // Get connectionstring from static global variable
+        string ConString = OurSqlConnectionString.ConString;
         private void btn_Signup_Click(object sender, RoutedEventArgs e)
         {
             signup signUpWindow = new signup();

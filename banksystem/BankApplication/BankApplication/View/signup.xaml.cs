@@ -14,7 +14,8 @@ namespace BankApplication.View
             InitializeComponent();
         }
 
-        string ConString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\rebec\\projects\\banking-system\\banksystem\\BankApplication\\BankApplication\\banksystem_database.mdf;Integrated Security=True";
+        // Get connectionstring from static global variable
+        string ConString = OurSqlConnectionString.ConString;
 
         private void btn_CreateUser_Click(object sender, RoutedEventArgs e)
         {
