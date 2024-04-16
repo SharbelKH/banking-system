@@ -30,5 +30,15 @@ namespace BankApplication
         {
 
         }
+
+        private void Transfer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Deposit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
