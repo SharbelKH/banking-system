@@ -63,7 +63,18 @@ docker run \
   ghcr.io/super-linter/super-linter:latest
   
 -----------------------------------------
-### 
+### Built with
+[Material Design In XAML](http://materialdesigninxaml.net/) - Fully open source and one of the most popular GUI libraries for WPF.
+
+### Run local database instruction
+1. make sure sql server is installed on you local computer
+    - if not here is the link: https://www.microsoft.com/en-us/sql-server/sql-server-downloads 
+2. open the project
+3. under solution explorer, there will be a .mdf file, double click on the file. This will run the database on your local computer.
+4. under View -> server expoler you'll find banksystem_database, right click on the database and click on properties.
+5. copy the connection link, important to get the entire link.
+6. naviagte to OurSqlConnectionString.cs and add your personal link.
+7. save and run the projects, to make sure that the connection is working, log in with user ID: 1000 and password: Groda123. You will receive a message saying the log in was successful, this means the connection is working.  
 
 ## Group members
 - Sherbal Al khouri, SharbelKH
@@ -85,9 +96,6 @@ I, Emil Fröding, declare that I am the sole author of the content I add to this
 I, Jakob Skoglund, declare that I am the sole author of the content I add to this repository
 
 I, Erik Wöhry, declare that I am the sole author of the content I add to this repository 
-
-### Built with
-[Material Design In XAML](http://materialdesigninxaml.net/) - Fully open source and one of the most popular GUI libraries for WPF.
 
 # Our kanban board
 [Link to kanban board](https://github.com/users/SharbelKH/projects/1/views/1)
