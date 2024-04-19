@@ -33,7 +33,7 @@ namespace BankApplication.logic
 
         //      }
 
-        // This new constructor has the following implementation:
+        // The new constructor has the following implementation:
         // When we log in, the accountId that are used for login are used to instanciate a class User
         // Which will then get all the data from the database such as name, phonenumber etc.
         public User(string accountId)
