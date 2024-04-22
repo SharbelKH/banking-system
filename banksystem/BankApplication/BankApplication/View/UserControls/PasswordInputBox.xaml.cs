@@ -72,5 +72,11 @@ namespace BankApplication.View.UserControls
 
             isPasswordVisible = !isPasswordVisible; 
         }
+
+        private void passwordInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if ((string.IsNullOrEmpty(visiblePasswordInput.Text)) & (string.IsNullOrEmpty(passwordInput.Password)))
+                tbPlaceholder.Visibility = Visibility.Visible;
+        }
     }
 }
