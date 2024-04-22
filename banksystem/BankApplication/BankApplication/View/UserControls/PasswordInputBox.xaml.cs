@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
 
 namespace BankApplication.View.UserControls
 {
@@ -8,6 +9,7 @@ namespace BankApplication.View.UserControls
     /// </summary>
     public partial class PasswordInputBox : UserControl
     {
+        private bool isPasswordVisible = false;
         public PasswordInputBox()
         {
             InitializeComponent();
@@ -32,13 +34,43 @@ namespace BankApplication.View.UserControls
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            passwordInput.Clear();
-            passwordInput.Focus();
+            if (isPasswordVisible)
+            {
+                passwordInput.Clear();
+                visiblePasswordInput.Clear();
+                visiblePasswordInput.Focus();
+            }
+            else
+            {
+                visiblePasswordInput.Clear();
+                passwordInput.Clear();
+                passwordInput.Focus();
+            }            
         }
 
         private void passwordInput_GotFocus(object sender, RoutedEventArgs e)
         {
             tbPlaceholder.Visibility = Visibility.Collapsed;
+        }
+
+        private void show_Password(object sender, RoutedEventArgs e)
+        {
+            if (!isPasswordVisible)
+            {
+                visiblePasswordInput.Text = passwordInput.Password;
+                visiblePasswordInput.Visibility = Visibility.Visible;
+                passwordInput.Visibility = Visibility.Hidden;
+                visiblePasswordInput.Focus(); 
+            }
+            else
+            {
+                passwordInput.Password = visiblePasswordInput.Text;
+                passwordInput.Visibility = Visibility.Visible;
+                visiblePasswordInput.Visibility = Visibility.Hidden;
+                passwordInput.Focus(); 
+            }
+
+            isPasswordVisible = !isPasswordVisible; 
         }
     }
 }
