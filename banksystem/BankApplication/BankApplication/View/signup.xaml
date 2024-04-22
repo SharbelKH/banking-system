@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Sign Up" Height="700" Width="420" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
-    <Border Background="AliceBlue" CornerRadius="20">
+    <Border Background="Beige" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
