@@ -40,5 +40,10 @@ namespace BankApplication
         {
 
         }
+
+        private void Withdraw_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

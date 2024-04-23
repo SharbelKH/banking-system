@@ -12,10 +12,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="FirstAndSurname" Grid.Column="0" Height="20" Width="100" Text="Username" Margin="290,10,10,404" Background="Black" Foreground="White"/>
-        <TextBox Text="Account Details"   Grid.Column="0" Height="20" FontSize="18" Background="Beige" Margin="142,10,130,404"/>
+        <TextBox x:Name="FirstAndSurname" Grid.Column="0" Height="20" Width="100" Text="Username" Margin="78,3,222,411" Background="Beige"/>
+        <TextBox Text="Account Details"   Grid.Column="0" FontSize="18" Background="Beige" Margin="146,26,126,381"/>
         <ListBox Name ="AccountListBox" Grid.Column="0" Width="300" Height="140" Margin="60,53,40,241" >
-
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding AccountID}" Margin ="5"/>
+                        <TextBlock Text="{Binding Amount}"    Margin  ="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <ListBox Name ="TransactionListBox" Grid.Column="0" Width="300" Margin="60,249,40,43">
@@ -23,7 +30,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding TransactionDate}" Margin="5"/>
-                        <TextBlock Text="{Binding Description}" Margin="5"/>
+                        <TextBlock Text="{Binding AccountID}" Margin="5"/>
                         <TextBlock Text="{Binding Amount}" Margin="5"/>
                     </StackPanel>
                 </DataTemplate>
@@ -31,22 +38,28 @@
         </ListBox>
 
 
-        <TextBox   Text="TransactionHistory"    Grid.Column="0" Background="Beige" Margin="132,220,112,190" FontSize="18"/>
+
+
+        <TextBox   Text="TransactionHistory"    Grid.Column="0" Background="Beige" Margin="132,225,112,185" FontSize="18"/>
 
         <Button x:Name="Exit" Content="Exit Menu" Click="Exit_Click" Height="20" Width="60" Margin="8,3,332,411"/>
 
         <TextBox Text="Deposit" Height="21" Grid.Column="1" Width="80" Background="Beige"  FontSize="15" Margin="46,56,274,357"/>
-        <TextBox x:Name="DepositID" Text="Deposit too:" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,90,264,329"/>
-        <TextBox x:Name="DepositAmount" Text="Deposit amount" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,115,264,304"/>
-        <Button x:Name ="Deposit" Content="Deposit" Grid.Column="1" Background="Gray"  Margin="46,147,300,272" Click="Deposit_Click" FontSize="8" Foreground="White"/>
+        <TextBox x:Name="DepositID" Text="Deposit too:" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,115,264,304"/>
+        <TextBox x:Name="DepositAmount" Text="Deposit amount" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,91,264,329"/>
+        <Button x:Name ="Deposit" Content="Deposit" Grid.Column="1" Background="Gray"  Margin="46,147,309,272" Click="Deposit_Click" FontSize="8" Foreground="White"/>
 
 
         <TextBox Text="Transfer" Height="21" Grid.Column="1" Width="80" Background="Beige"  FontSize="15" Margin="238,56,82,357"/>
-        <TextBox x:Name ="TransferID" Text="Transfer too:" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="238,90,72,329" />
-        <TextBox x:Name="TransferAmount" Text="Transfer amount" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="238,115,72,304" />
+        <TextBox x:Name ="TransferID" Text="Transfer too:" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="238,115,72,304" />
+        <TextBox x:Name="TransferAmount" Text="Transfer amount" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="238,91,72,328" />
         <Button x:Name ="Transfer" Content="Transfer" Grid.Column="1" Background="Gray" Click="Transfer_Click" Margin="238,147,117,272" FontSize="8" Foreground="White"/>
 
-
+        <TextBox Text="Whitdraw" Height="21" Grid.Column="1" Width="80" Background="Beige" FontSize="15" Margin="46,207,274,206"/>
+        <TextBox x:Name="WithdrawFromAccount" Text="From account" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,244,264,175"/>
+        <TextBox x:Name="WithdrawToAccount" Text="To account" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,275,264,144"/>
+        <TextBox x:Name="AmountToWithdraw" Text="Amount" Height="15"    Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,305,264,114"/>
+        <Button x:Name="Withdraw" Content="Withdraw" Grid.Column="1" Background="Gray" Click="Withdraw_Click" FontSize="8" Foreground="White" Margin="46,331,309,88"/>
 
 
     </Grid>
