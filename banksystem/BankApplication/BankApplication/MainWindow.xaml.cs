@@ -26,10 +26,7 @@ namespace BankApplication
             InitializeComponent();
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void Transfer_Click(object sender, RoutedEventArgs e)
         {
@@ -42,6 +39,11 @@ namespace BankApplication
         }
 
         private void Withdraw_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
         {
 
         }
