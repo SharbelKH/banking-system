@@ -9,7 +9,6 @@ namespace BankApplication.logic
 {
     public class User
 	{
-        private static int _nextUserId = 1;
 
         public string UserId { get; private set; } = string.Empty;
         public string Name { get; private set; } = string.Empty;
@@ -17,9 +16,14 @@ namespace BankApplication.logic
 		public string Email { get; private set; } = string.Empty;
         public string PhoneNumber { get; private set; } = string.Empty;
         public string Address { get; private set; } = string.Empty;
-        public double balance { get; private set; }
+        public string Balance { get; private set; } = string.Empty;
 
         private List<Account> accounts;
+
+        public string userData()
+        {
+            return this.Name + this.Balance;
+        }
 
         //public User(int userId, string Name, string email, string phoneNumber, string password)
         //{
@@ -48,7 +52,7 @@ namespace BankApplication.logic
             {
                 using (SqlConnection Con = new SqlConnection(ConString))
                 {
-                    string query = "SELECT Name, PhoneNumber, Address, Password FROM Account WHERE Id = @AccountId";
+                    string query = "SELECT Name, PhoneNumber, Address, Password, Balance FROM Account WHERE Id = @AccountId";
                     using (SqlCommand command = new SqlCommand(query, Con))
                     {
                         command.Parameters.AddWithValue("@AccountId", accountId);
@@ -63,7 +67,9 @@ namespace BankApplication.logic
                                 this.PhoneNumber = reader["Phonenumber"].ToString();
                                 this.Address = reader["Address"].ToString();
                                 this.Password = reader["Password"].ToString();
-                                this.balance = double.Parse(reader["Balance"].ToString());
+                                int balanceValue = reader.GetInt32(reader.GetOrdinal("Balance"));
+
+                                this.Balance = balanceValue.ToString();
 
                             }
                            
@@ -85,12 +91,27 @@ namespace BankApplication.logic
         {
             if (amount <= 10000)
             {
-                balance += amount;
+                Balance += amount;
                 return true;
             }
             else
             {
                 return false;
+            }
+        }
+        public bool Withdraw(double amount)
+        {
+
+            if (amount <= double.Parse(Balance))
+            {
+                double new_balance = double.Parse(Balance) - amount;
+                Balance = new_balance.ToString();
+                return true;
+            }
+            else
+            {
+                return false;
+
             }
         }
     }
