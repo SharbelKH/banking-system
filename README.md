@@ -3,7 +3,8 @@
 
 ## Project status
 ![workflow](https://github.com/SharbelKH/banking-system/actions/workflows/dotnet.yml/badge.svg)
-[![code_coverage](https://github.com/SharbelKH/banking-system/actions/workflows/code-coverage.yml/badge.svg)](https://github.com/SharbelKH/banking-system/actions/workflows/code-coverage.yml)
+
+[![Unit test](https://github.com/SharbelKH/banking-system/actions/workflows/code-coverage.yml/badge.svg)](https://github.com/SharbelKH/banking-system/actions/workflows/code-coverage.yml)
 
 ## Project description
 We will design a banking system that manages users and their different bank accounts.
