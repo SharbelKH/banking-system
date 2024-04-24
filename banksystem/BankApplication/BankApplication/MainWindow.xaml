@@ -57,7 +57,7 @@
         <TextBox x:Name="TransferAmount" Text="Transfer amount" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="238,91,72,328" />
         <Button x:Name ="Transfer" Content="Transfer" Grid.Column="1" Background="Gray" Click="Transfer_Click" Margin="238,147,117,272" FontSize="8" Foreground="White"/>
 
-        <TextBox Text="Whitdraw" Height="21" Grid.Column="1" Width="80" Background="Beige" FontSize="15" Margin="46,207,274,206"/>
+        <TextBox Text="Withdraw" Height="21" Grid.Column="1" Width="80" Background="Beige" FontSize="15" Margin="46,207,274,206"/>
         <TextBox x:Name="WithdrawFromAccount" Text="From account" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,244,264,175"/>
         <TextBox x:Name="WithdrawToAccount" Text="To account" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,275,264,144"/>
         <TextBox x:Name="AmountToWithdraw" Text="Amount" Height="15"    Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,305,264,114"/>

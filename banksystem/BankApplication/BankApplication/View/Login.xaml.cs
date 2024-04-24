@@ -32,6 +32,10 @@ namespace BankApplication.View
             if (AuthenticateUser(userID, password))
             {
                 MessageBox.Show("login successful!");
+                MainWindow mainWindow = new MainWindow(userID);
+                mainWindow.Show();
+                this.Close();
+
                 //open main window connected with ID
             }
             else
