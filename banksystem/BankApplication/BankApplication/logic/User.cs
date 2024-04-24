@@ -17,6 +17,7 @@ namespace BankApplication.logic
 		public string Email { get; private set; } = string.Empty;
         public string PhoneNumber { get; private set; } = string.Empty;
         public string Address { get; private set; } = string.Empty;
+        public double balance { get; private set; };
 
         private List<Account> accounts;
 
@@ -62,6 +63,7 @@ namespace BankApplication.logic
                                 this.PhoneNumber = reader["Phonenumber"].ToString();
                                 this.Address = reader["Address"].ToString();
                                 this.Password = reader["Password"].ToString();
+                                this.balance = double.Parse(reader["Balance"].ToString());
 
                             }
                            
@@ -79,6 +81,17 @@ namespace BankApplication.logic
                 Account newAccount = AccountFactory.CreateAccount(accountType);
                 accounts.Add(newAccount);
             }
-
+        public bool Deposit(double amount)
+        {
+            if (amount <= 10000)
+            {
+                balance += amount;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+    }
 }

@@ -44,10 +44,12 @@
 
         <Button x:Name="Logout" Content="Log Out" Click="Logout_Click" Height="20" Width="60" Margin="8,3,332,411"/>
 
+
         <TextBox Text="Deposit" Height="21" Grid.Column="1" Width="80" Background="Beige"  FontSize="15" Margin="46,56,274,357"/>
         <TextBox x:Name="DepositID" Text="Deposit too:" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,115,264,304"/>
         <TextBox x:Name="DepositAmount" Text="Deposit amount" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,91,264,329"/>
         <Button x:Name ="Deposit" Content="Deposit" Grid.Column="1" Background="Gray"  Margin="46,147,309,272" Click="Deposit_Click" FontSize="8" Foreground="White"/>
+
 
 
         <TextBox Text="Transfer" Height="21" Grid.Column="1" Width="80" Background="Beige"  FontSize="15" Margin="238,56,82,357"/>
