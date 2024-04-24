@@ -17,7 +17,7 @@ namespace BankApplication.logic
 		public string Email { get; private set; } = string.Empty;
         public string PhoneNumber { get; private set; } = string.Empty;
         public string Address { get; private set; } = string.Empty;
-        public double balance { get; private set; };
+        public double balance { get; private set; }
 
         private List<Account> accounts;
 
