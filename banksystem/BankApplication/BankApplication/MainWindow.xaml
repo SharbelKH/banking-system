@@ -42,7 +42,7 @@
 
         <TextBox   Text="TransactionHistory"    Grid.Column="0" Background="Beige" Margin="132,225,112,185" FontSize="18"/>
 
-        <Button x:Name="Exit" Content="Exit Menu" Click="Exit_Click" Height="20" Width="60" Margin="8,3,332,411"/>
+        <Button x:Name="Logout" Content="Log Out" Click="Logout_Click" Height="20" Width="60" Margin="8,3,332,411"/>
 
         <TextBox Text="Deposit" Height="21" Grid.Column="1" Width="80" Background="Beige"  FontSize="15" Margin="46,56,274,357"/>
         <TextBox x:Name="DepositID" Text="Deposit too:" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,115,264,304"/>
