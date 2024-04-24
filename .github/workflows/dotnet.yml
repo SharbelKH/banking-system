@@ -42,26 +42,13 @@ jobs:
      - name: Setup .NET
        uses: actions/setup-dotnet@v3
        with:
-          dotnet-version: ${{ secerts.GITHUB_TOKEN }}
+          dotnet-version: ${{ matrix.dotnet-version }}
           
      - name: Restore Dependencies
        run: dotnet restore banksystem/BankApplication/BankApplication/BankApplication.csproj
         
-     - name: Run Tests with Code Coverage
-       run: dotnet test banksystem/BankApplication/BankApplication/BankApplication.csproj --collect:"XPlat Code Coverage"
-     
-     - name: Generate Code Coverage Report
-       uses: danielpalme/reportgenerator-action@v5
-       with:
-        reports: '**/TestResults/**/*.cobertura.xml'
-        targetdir: './CoverageReport'
-        reporttypes: 'HtmlInline_AzurePipelines'
-
-     - name: Upload Code Coverage Report
-       uses: actions/upload-artifact@v3
-       with:
-        name: code-coverage-report
-        path: './CoverageReport'
+     - name: Test
+       run: dotnet test banksystem/BankApplication/BankApplication/BankApplication.csproj 
 
           
         
