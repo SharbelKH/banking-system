@@ -83,6 +83,7 @@ docker run \
 2. Ensure your unit tests are running properly.
 3. Go to Test > Analyze Code Coverage > For All Tests.
 4. After the tests complete, the code coverage report will open, showing the percentage of code covered by the tests.
+   NOTE! You can also find code coverage metrics in github actions under 'code-coverage' workflow. Select a specific run to analyse, press 'build and test' and expand 'Run test with code coverage'.
 
 ## Group members
 - Sherbal Al khouri, SharbelKH
