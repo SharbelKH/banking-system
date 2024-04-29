@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Data.SqlClient;
+using BankApplication;
 namespace BankApplication.View
 {
     /// <summary>
@@ -30,15 +31,19 @@ namespace BankApplication.View
                     using (SqlConnection Con = new SqlConnection(ConString))
                     {
                         Con.Open();
-                        SqlCommand cmd = new SqlCommand("insert into Account(Name, Phonenumber, Address, Password, Balance) values (@Name, @PhoneNumber, @Address, @Password, @Balance)", Con);
+                        SqlCommand cmd = new SqlCommand("insert into Account(Name, Phonenumber, Address, Password, Balance) values (@Name, @PhoneNumber, @Address, @Password, @Balance); SELECT SCOPE_IDENTITY();", Con);
                         cmd.Parameters.AddWithValue("@Name", fullname.TextString);
                         cmd.Parameters.AddWithValue("@PhoneNumber", phonenumber.TextString);
                         cmd.Parameters.AddWithValue("@Address", adress.TextString);
                         cmd.Parameters.AddWithValue("@Password", passwordinput.passwordString);
                         cmd.Parameters.AddWithValue("@Balance", 0);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Account Created!");
+
+                        int userId = Convert.ToInt32(cmd.ExecuteScalar());
+                        MessageBox.Show("Succesfully created user. Your username for login: " + userId);
+                        MainWindow mainWindow = new MainWindow(userId.ToString());
+                        mainWindow.Show();
                         Con.Close();
+                        this.Close();
                     }
                 }
                 catch (Exception ex)
@@ -46,6 +51,7 @@ namespace BankApplication.View
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
+            
         }
     }
 }
