@@ -1,14 +1,12 @@
 name: code_coverage
 
-run-name: ${{ github.actor }}
-
 on:
   push:
     branches: [ "main" ]
 
 jobs:
   build-and-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
