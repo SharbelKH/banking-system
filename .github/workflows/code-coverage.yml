@@ -3,6 +3,8 @@ name: code_coverage
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build-and-test:
@@ -31,16 +33,3 @@ jobs:
       with:
           name: code-coverage-report
           path: TestResults/**/coverage.cobertura.xml
-
-    - name: Code Coverage Report
-      uses: actions/upload-artifact@v4
-      with:
-        filename: TestResults/**/coverage.cobertura.xml
-        badge: true
-        fail_below_min: true
-        format: markdown
-        hide_branch_rate: false
-        hide_complexity: true
-        indicators: true
-        output: both
-        thresholds: '60 80'
