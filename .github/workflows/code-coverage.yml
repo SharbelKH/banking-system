@@ -26,8 +26,17 @@ jobs:
       run: dotnet build --no-restore banksystem/BankApplication/BankApplication/BankApplication.csproj
       
     - name: Run tests with code coverage
-      run: dotnet test --no-build --verbosity normal banksystem/BankApplication/BankApplication/BankApplication.csproj --collect:"XPlat Code Coverage" --results-directory ./TestResults
-   
+      run: dotnet test --no-build --verbosity normal banksystem/BankApplication/BankApplication/BankApplication.csproj --collect:"XPlat Code Coverage"
+
+    - name: Install cobertura packages
+      run: dotnet tool install -g dotnet-reportgenerator-globaltool   
+
+    - name: Create report
+      run: dotnet tool install -g dotnet-reportgenerator-globaltool   
+
+    - name: Create HTMl version of report
+      run: reportgenerator -reports:coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:HtmlInline_AzurePipelines
+    
     - name: Archive code coverage results
       uses: actions/upload-artifact@v4
       with:
