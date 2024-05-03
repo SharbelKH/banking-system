@@ -26,22 +26,5 @@ jobs:
       run: dotnet build --no-restore banksystem/BankApplication/BankApplication/BankApplication.csproj
       
     - name: Run tests with code coverage
-      run: dotnet test --no-build --verbosity normal banksystem/BankApplication/BankApplication/BankApplication.csproj --collect:"XPlat Code Coverage" --results-directory ./coverage
-
-    - name: Install coverage generator
-      run: dotnet tool install -g dotnet-reportgenerator-globaltool   
-
-    - name: Create report - XML
-      run: reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:"Cobertura"  
-
-    - name: Create HTMl version of report
-      run: reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:Html
-
-    - name: Upload Artefacts
-#     run: mkdir -p $GITHUB_WORKSPACE/coverage/
-
-      uses: actions/upload-artifact@v4
-      with:
-        name: code-coverage-report
-        path: coverlet/reports
+      run: dotnet test --no-build  banksystem/BankApplication/BankApplication/BankApplication.csproj --collect:"XPlat Code Coverage" 
     
