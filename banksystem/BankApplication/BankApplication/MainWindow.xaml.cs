@@ -99,7 +99,7 @@ namespace BankApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: 404. Account not found in database");
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -144,7 +144,7 @@ namespace BankApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: 404. Account not found in database");
+                MessageBox.Show(ex.Message);
             }
         }
 

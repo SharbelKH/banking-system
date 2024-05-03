@@ -12,8 +12,8 @@ namespace BankApplication.logic
         public bool Transfer(string fromAccountNumber, string toAccountNumber, double amount)
         {
             // Retrieve the source and destination accounts based on the provided account numbers
-            User fromAccount = GetAccountByAccountNumber(fromAccountNumber);
-            User toAccount = GetAccountByAccountNumber(toAccountNumber);
+            User fromAccount = new User(fromAccountNumber);
+            User toAccount = new User(toAccountNumber);
 
             // Check if both accounts are valid
             if (!dataBaseManipulation.is_in_database(toAccountNumber))
@@ -36,21 +36,6 @@ namespace BankApplication.logic
                 throw insufficientFunds;
             }
         }
-
-
-        private User GetAccountByAccountNumber(string accountNumber)
-        {
-            // Logic to retrieve the account from the database based on the account number
-            // This would involve querying the database to find the account with the given account number
-            // For now, let's assume you have a method that retrieves the account based on its number
-            // For demonstration purposes, let's return null
-            User user = new User(accountNumber);
-
-
-            return user;
-        }
-
-
     }
 }
 

@@ -4,6 +4,8 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Drawing;
 using System.Net;
+using System.Windows.Forms;
+
 
 namespace BankApplication.logic
 {
@@ -20,10 +22,6 @@ namespace BankApplication.logic
 
         private List<Account> accounts;
 
-        public string userData()
-        {
-            return this.Name + this.Balance;
-        }
 
         //public User(int userId, string Name, string email, string phoneNumber, string password)
         //{
@@ -80,6 +78,7 @@ namespace BankApplication.logic
             catch (Exception ex)
             {
                 // Some exception window maybe?
+                MessageBox.Show(ex.Message);
             }
         }
         public void AddAccount(string accountType)

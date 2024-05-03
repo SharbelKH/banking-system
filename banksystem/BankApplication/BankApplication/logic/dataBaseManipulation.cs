@@ -36,6 +36,8 @@ namespace BankApplication.logic
             catch (Exception ex)
             {
                 // Some Exception?
+                MessageBox.Show(ex.Message);
+
             }
         }
 
@@ -72,6 +74,7 @@ namespace BankApplication.logic
             catch (Exception ex)
             {
                 // Some Exception?
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -20,7 +20,7 @@ namespace BankApplication.View.UserControls
             get { return passwordInput.Password; }
         }
 
-        private string placeholder;
+        private string placeholder = string.Empty;
 
         public string Placeholder
         {
