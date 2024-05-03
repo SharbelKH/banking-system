@@ -12,6 +12,10 @@ namespace BankApplication.logic
     public static class dataBaseManipulation
     {
         private static string ConString = OurSqlConnectionString.ConString;
+        public static void setConnectionString(string connectionString)
+        {
+            ConString = connectionString;
+        }
 
         public static void deposit(string toAccount, double amount)
         {

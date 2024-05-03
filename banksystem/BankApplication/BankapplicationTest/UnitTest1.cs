@@ -1,8 +1,53 @@
-
+using System;
+using Moq;
+using NUnit.Framework;
+using System.Data.SqlClient;
 using BankApplication.logic;
+using Microsoft.Data.SqlClient;
 using NUnit.Framework;
 namespace BankApplicationTest
 {
+    [TestFixture]
+    public class TransactionTests
+    {
+        [Test]
+        public void transferTests()
+        {
+            // Arrange
+            Transaction transaction = new Transaction();
+
+            // Act
+            bool transferResult = transaction.Transfer("1000", "1001", 1);
+
+            // Assert
+            Assert.That(transferResult, "This Transfer should be allowed!");
+        }
+    }
+
+    [TestFixture]
+    public class AccountFactoryTests
+    {
+        [Test]
+        public void CreateAccountTest()
+        {
+            // Arrange
+            Account savingsAccount = AccountFactory.CreateAccount("Savings");
+            Account retirementAccount = AccountFactory.CreateAccount("Retirement");
+            Account checkingAccount = AccountFactory.CreateAccount("Checking");
+
+
+            // Act
+            bool savingsResult = savingsAccount.accountType == "Savings";
+            bool retirementResult = retirementAccount.accountType == "Retirement";
+            bool checkingResult = checkingAccount.accountType == "Checking";
+
+            // Assert
+            Assert.That(savingsResult, "This should be a 'savings' account!");
+            Assert.That(retirementResult, "This should be a 'retirement' account!");
+            Assert.That(checkingResult, "This should be a 'checkings' account!");
+        }
+    }
+
     [TestFixture]
     public class AccountTests
     {
