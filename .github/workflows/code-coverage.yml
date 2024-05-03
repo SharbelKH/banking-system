@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -33,7 +33,7 @@ jobs:
           path: TestResults/**/coverage.cobertura.xml
 
     - name: Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1.3.0
+      uses: actions/upload-artifact@v4
       with:
         filename: TestResults/**/coverage.cobertura.xml
         badge: true
