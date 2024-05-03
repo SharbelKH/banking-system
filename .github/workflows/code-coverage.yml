@@ -24,7 +24,7 @@ jobs:
       run: dotnet build banksystem/BankApplication/BankApplicationTest/BankApplicationTest.csproj
       
     - name: Run tests with code coverage
-      run: dotnet test  banksystem/BankApplication/BankApplicationTest/BankApplicationTest.csproj --collect:"XPlat Code Coverage" --result-directory ./coverage
+      run: dotnet test  --no-build banksystem/BankApplication/BankApplicationTest/BankApplicationTest.csproj --collect:"XPlat Code Coverage" --results-directory ./coverage
    
     - name: Archive code coverage results
       uses: actions/upload-artifact@v4
