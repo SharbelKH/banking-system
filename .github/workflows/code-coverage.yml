@@ -38,9 +38,9 @@ jobs:
       run: reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:Html
 
     - name: Upload Artefacts
-      run: mkdir -p $GITHUB_WORKSPACE/coverage/
+#     run: mkdir -p $GITHUB_WORKSPACE/coverage/
 
-    uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4
       with:
         name: code-coverage-report
         path: coverlet/reports
