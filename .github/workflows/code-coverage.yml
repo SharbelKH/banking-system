@@ -20,10 +20,10 @@ jobs:
         dotnet-version: '6.0.x'
         
     - name: Restore Dependencies
-      run: dotnet restore banksystem/BankApplication/BankApplication/BankApplication.csproj
+      run: dotnet restore banksystem/BankApplication/BankapplicationTest/BankApplicationTest.csproj
 
     - name: Build
-      run: dotnet build --no-restore banksystem/BankApplication/BankApplication/BankApplication.csproj
+      run: dotnet build --no-restore banksystem/BankApplication/BankapplicationTest/BankApplicationTest.csproj
       
     - name: Run tests with code coverage
       run: dotnet test --no-build  banksystem/BankApplication/BankApplication/BankApplication.csproj --collect:"XPlat Code Coverage" 
