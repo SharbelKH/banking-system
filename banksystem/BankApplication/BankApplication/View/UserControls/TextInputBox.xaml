@@ -7,12 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="250">
     <Grid Background="White">
-        
+
         <TextBox x:Name="txtInput" VerticalAlignment="Center" 
                  FontSize="14" FontWeight="Light" Background="Transparent"
                  TextChanged="txtInput_TextChanged" Height="30" 
                  HorizontalContentAlignment="Stretch"
-                 GotFocus="txtInput_GotFocus" LostFocus="txtInput_LostFocus"/>
+                 GotFocus="txtInput_GotFocus" LostFocus="txtInput_LostFocus"
+                 Padding="0,5,0,5"/>
         
         <TextBlock x:Name="tbPlaceholder" Text="{Binding Placeholder}"
                    FontSize="14" FontWeight="Light" Foreground="DarkGray"
