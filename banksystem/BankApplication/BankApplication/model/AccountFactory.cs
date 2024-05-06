@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BankApplication.logic.Account;
+using static BankApplication.model.Account;
 
-namespace BankApplication.logic
+namespace BankApplication.model
 {
     public static class AccountFactory
     {

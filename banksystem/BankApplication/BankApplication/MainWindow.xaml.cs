@@ -10,9 +10,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BankApplication.logic;
+using BankApplication.model;
 using BankApplication.View;
 using BankApplication.myExceptions;
+using BankApplication.Controller;
 
 namespace BankApplication
 {
@@ -26,35 +27,40 @@ namespace BankApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        private User logged_in_user;
-        public MainWindow(string accountId)
+        private Database db;
+        private UserController userController;
+
+        public MainWindow(Database db, User user)
         {
-            this.logged_in_user = new User(accountId);
             InitializeComponent();
-            Loaded += MainWindow_Loaded;
+            this.db = db;
+            userController = new UserController(db);
+            ApplicationUser.LoggedInUser = user;
         }
 
 
 
         private void Transfer_Click(object sender, RoutedEventArgs e)
         {
-            Transaction new_transaction = new Transaction();
-            double transferAmount = double.Parse(TransferAmount.Text);
+            string transferAmount = TransferAmount.Text;
             string transferID = TransferID.Text;
+
             try
             {
-                new_transaction.Transfer(logged_in_user.UserId, transferID, transferAmount);
-                MessageBox.Show("Transfer succeeded");
+                bool transferBool = userController.TransferFunds(transferID, transferAmount);
+                if (transferBool)
+                {
+                    MessageBox.Show("Successfully transfered " + transferAmount + "kr. to: " + transferID);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to deposit funds. Please try again.");
+                }
 
             }
-            catch (insufficientFunds insufficientFund)
+            catch (Exception ex)
             {
-                MessageBox.Show(insufficientFund.Message);
-
-            }
-            catch (invalid_source invalid_source)
-            {
-                MessageBox.Show(invalid_source.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -62,89 +68,45 @@ namespace BankApplication
         {
 
             string depositAmmount = DepositAmount.Text;
-            string ConString = OurSqlConnectionString.ConString;
-
-            // Input is not a double
-            if (!double.TryParse(depositAmmount, out double res))
-            {
-                MessageBox.Show("Enter a number please!");
-                return;
-
-            }
-
-            // Deposit is larger than 10 000 and therefore false
-            if (!logged_in_user.Deposit(double.Parse(depositAmmount)))
-            {
-                // Maybe window saying its not possible to deposit this ammount?
-                MessageBox.Show("You cant deposit more than 10 000kr at a time!");
-                return;
-            }
 
             try
             {
-                using (SqlConnection Con = new SqlConnection(ConString))
+                bool depositBool = userController.DepositFunds(depositAmmount,ApplicationUser.LoggedInUser.PhoneNumber);
+                if (depositBool)
                 {
-                    string query = "UPDATE Account SET Balance = Balance + @new_balance WHERE Id = @AccountId";
-                    using (SqlCommand command = new SqlCommand(query, Con))
-                    {
-                        command.Parameters.AddWithValue("@AccountId", logged_in_user.UserId);
-                        command.Parameters.AddWithValue("@new_balance", depositAmmount);
-
-                        Con.Open();
-                        command.ExecuteScalar();
-                        MessageBox.Show("Successfully deposited " + depositAmmount + "kr.");
-
-                    }
+                    MessageBox.Show("Successfully deposited " + depositAmmount + "kr.");
                 }
+                else
+                {
+                    MessageBox.Show("Failed to deposit funds. Please try again.");
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: 404. Account not found in database");
+                MessageBox.Show(ex.Message);
             }
-
         }
 
         private void Withdraw_Click(object sender, RoutedEventArgs e)
         {
             string withdrawAmmount = AmountToWithdraw.Text;
-            string ConString = OurSqlConnectionString.ConString;
-
-            // Input is not a double
-            if (!double.TryParse(withdrawAmmount, out double res))
-            {
-                MessageBox.Show("Enter a number please!");
-                return;
-
-            }
-
-            // Deposit is larger than 10 000 and therefore false
-            if (!logged_in_user.Withdraw(double.Parse(withdrawAmmount)))
-            {
-                // Maybe window saying its not possible to deposit this ammount?
-                MessageBox.Show("You cant withdraw " + withdrawAmmount +"kr, you only have: " + logged_in_user.Balance + "kr!");
-                return;
-            }
-
             try
             {
-                using (SqlConnection Con = new SqlConnection(ConString))
+                bool withdrawBool = userController.WithdrawFunds(withdrawAmmount);
+                if (withdrawBool)
                 {
-                    string query = "UPDATE Account SET Balance = Balance - @withdraw WHERE Id = @AccountId";
-                    using (SqlCommand command = new SqlCommand(query, Con))
-                    {
-                        command.Parameters.AddWithValue("@AccountId", logged_in_user.UserId);
-                        command.Parameters.AddWithValue("@withdraw", withdrawAmmount);
-
-                        Con.Open();
-                        command.ExecuteScalar();
-                        MessageBox.Show("Successfully withdrawn " + withdrawAmmount + "kr.");
-
-                    }
+                    MessageBox.Show("Successfully withdrawn " + withdrawAmmount + "kr.");
                 }
+                else
+                {
+                    MessageBox.Show("Failed to withdraw funds. Please try again.");
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: 404. Account not found in database");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -158,7 +120,7 @@ namespace BankApplication
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // Change the text of the TextBox
-            FirstAndSurname.Text = this.logged_in_user.UserId;
+            FirstAndSurname.Text = ApplicationUser.LoggedInUser.Id.ToString();
         }
     }
 }

@@ -1,5 +1,5 @@
 
-using BankApplication.logic;
+using BankApplication.model;
 using NUnit.Framework;
 namespace BankApplicationTest
 {

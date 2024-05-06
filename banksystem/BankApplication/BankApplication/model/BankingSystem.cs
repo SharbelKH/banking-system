@@ -1,5 +1,5 @@
 ﻿using System;
-namespace BankApplication.logic
+namespace BankApplication.model
 {
 	public class BankingSystem
 	{

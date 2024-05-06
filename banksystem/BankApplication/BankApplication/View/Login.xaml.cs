@@ -1,5 +1,7 @@
 ﻿using System.Data;
 using System.Windows;
+using BankApplication.Controller;
+using BankApplication.model;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client.NativeInterop;
 
@@ -10,51 +12,42 @@ namespace BankApplication.View
     /// </summary>
     public partial class Login : Window
     {
+        private UserController userController;
+        private Database db;
+
         public Login()
         {
             InitializeComponent();
+            string connectionstring = OurSqlConnectionString.ConString;
+            db = new Database(connectionstring);
+            userController = new UserController(db);
         }
 
-        // Get connectionstring from static global variable
-        string ConString = OurSqlConnectionString.ConString;
         private void btn_Signup_Click(object sender, RoutedEventArgs e)
         {
-            signup signUpWindow = new signup();
+            signup signUpWindow = new signup(userController);
             signUpWindow.Show();
             this.Close();
         }
 
         private void btn_Login_Click(object sender, RoutedEventArgs e)
         {
+            // UserID is your phoneNumber
             string userID = UsernameIDInput.TextString;
             string password = PasswordLoginInput.passwordString;
 
-            if (AuthenticateUser(userID, password))
+            if (userController.AuthenticateUser(userID, password))
             {
                 MessageBox.Show("login successful!");
-                MainWindow mainWindow = new MainWindow(userID);
+                User user = userController.getUser(userID);
+                MainWindow mainWindow = new MainWindow(db,user);
                 mainWindow.Show();
                 this.Close();
 
-                //open main window connected with ID
             }
             else
             {
                 MessageBox.Show("Invalid user ID or password!");
-            }
-        }
-        
-        private bool AuthenticateUser(string userID, string password)
-        {
-            using (SqlConnection Con = new SqlConnection(ConString))
-            {
-                string query = "SELECT COUNT(*) FROM Account WHERE ID = @Id AND Password = @Password";
-                SqlCommand command = new SqlCommand(query, Con);
-                command.Parameters.AddWithValue("@Id", userID);
-                command.Parameters.AddWithValue("@Password", password);
-                Con.Open();
-                int count = (int)command.ExecuteScalar();
-                return count > 0;
             }
         }
     }
