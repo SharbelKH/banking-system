@@ -50,7 +50,7 @@ namespace BankApplication.View.UserControls
 
         private void passwordInput_GotFocus(object sender, RoutedEventArgs e)
         {
-            tbPlaceholder.Visibility = Visibility.Collapsed;
+            tbPlaceholder.Visibility = Visibility.Hidden;
         }
 
         private void show_Password(object sender, RoutedEventArgs e)
@@ -60,6 +60,7 @@ namespace BankApplication.View.UserControls
                 visiblePasswordInput.Text = passwordInput.Password;
                 visiblePasswordInput.Visibility = Visibility.Visible;
                 passwordInput.Visibility = Visibility.Hidden;
+                tbPlaceholder.Visibility = Visibility.Hidden;
                 visiblePasswordInput.Focus(); 
             }
             else
