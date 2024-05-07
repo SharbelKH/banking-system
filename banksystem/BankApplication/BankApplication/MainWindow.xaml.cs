@@ -71,7 +71,7 @@ namespace BankApplication
 
             try
             {
-                bool depositBool = userController.DepositFunds(depositAmmount,ApplicationUser.LoggedInUser.PhoneNumber);
+                bool depositBool = userController.DepositFunds(depositAmmount, ApplicationUser.LoggedInUser.PhoneNumber);
                 if (depositBool)
                 {
                     MessageBox.Show("Successfully deposited " + depositAmmount + "kr.");

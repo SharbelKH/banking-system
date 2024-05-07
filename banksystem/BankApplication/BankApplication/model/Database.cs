@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace BankApplication.model
 {
-    public class Database : IDisposable
+    public class Database : IDisposable, IDatabase
     {
         // Connection string to your database
         private string connectionString;

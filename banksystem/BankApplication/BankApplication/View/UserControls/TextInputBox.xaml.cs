@@ -18,7 +18,7 @@ namespace BankApplication.View.UserControls
             get { return txtInput.Text; }
         }
 
-        private string placeholder;
+        private string placeholder = string.Empty;
 
         public string Placeholder
         {
