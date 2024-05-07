@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Data.SqlClient;
 using BankApplication;
+using BankApplication.Controller;
+
 namespace BankApplication.View
 {
     /// <summary>
@@ -10,13 +12,13 @@ namespace BankApplication.View
     /// </summary>
     public partial class signup : Window
     {
-        public signup()
+        private UserController userController;
+
+        public signup(UserController userController)
         {
             InitializeComponent();
+            this.userController = userController;
         }
-
-        // Get connectionstring from static global variable
-        string ConString = OurSqlConnectionString.ConString;
 
         private void btn_CreateUser_Click(object sender, RoutedEventArgs e)
         {
@@ -24,34 +26,34 @@ namespace BankApplication.View
             {
                 MessageBox.Show("Missing information, please check!");
             }
+
             else
             {
-                try
-                {
-                    using (SqlConnection Con = new SqlConnection(ConString))
-                    {
-                        Con.Open();
-                        SqlCommand cmd = new SqlCommand("insert into Account(Name, Phonenumber, Address, Password, Balance) values (@Name, @PhoneNumber, @Address, @Password, @Balance); SELECT SCOPE_IDENTITY();", Con);
-                        cmd.Parameters.AddWithValue("@Name", fullname.TextString);
-                        cmd.Parameters.AddWithValue("@PhoneNumber", phonenumber.TextString);
-                        cmd.Parameters.AddWithValue("@Address", adress.TextString);
-                        cmd.Parameters.AddWithValue("@Password", passwordinput.passwordString);
-                        cmd.Parameters.AddWithValue("@Balance", 0);
+                string fullName = fullname.TextString;
+                string phoneNumber = phonenumber.TextString;
+                string address = adress.TextString;
+                string password = passwordinput.passwordString;
 
-                        int userId = Convert.ToInt32(cmd.ExecuteScalar());
-                        MessageBox.Show("Succesfully created user. Your username for login: " + userId);
-                        MainWindow mainWindow = new MainWindow(userId.ToString());
-                        mainWindow.Show();
-                        Con.Close();
-                        this.Close();
-                    }
-                }
-                catch (Exception ex)
+                // Assuming you have access to the userController instance
+                // and it's properly initialized, you can use it here
+                bool userCreated = userController.CreateUser(fullName, phoneNumber, address, password);
+
+                if (userCreated)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("User created successfully!");
+                    
+                    // Optionally, you might want to open the login window again
+                    Login loginWindow = new Login();
+                    loginWindow.Show();
+                    // Close the signup window
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create user. Please try again.");
                 }
             }
-            
         }
+
     }
 }
