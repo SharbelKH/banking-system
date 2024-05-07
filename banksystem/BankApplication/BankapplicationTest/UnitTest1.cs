@@ -1,8 +1,47 @@
 
 using BankApplication.model;
-using NUnit.Framework;
+using System.Data;
+using Moq;
+
 namespace BankApplicationTest
 {
+    [TestFixture]
+    public class DatabaseTests
+    {
+        private IDatabase database; // Use the interface instead of Database
+
+        [SetUp]
+        public void Setup()
+        {
+            // Initialize the mock IDatabase instance
+            var mockDatabase = new Mock<IDatabase>();
+            mockDatabase.Setup(d => d.ExecuteQuery(It.IsAny<string>())).Returns(new DataTable()); // Mock ExecuteQuery method to return an empty DataTable
+            database = mockDatabase.Object;
+        }
+
+        [Test]
+        public void ExecuteQuery_ReturnsDataTable_WhenQueryIsValid()
+        {
+            // Arrange
+            string validQuery = "SELECT * FROM TableName";
+
+            // Act
+            DataTable result = database.ExecuteQuery(validQuery);
+            bool boolResult;
+
+            // Assert
+            if (result == null )
+            {
+                boolResult = false;
+            }
+            else
+            {
+                boolResult = true;
+            }
+            Assert.That(boolResult, "ExecuteQuery_ReturnsDataTable_WhenQueryIsValid failed");
+        }
+    }
+
     [TestFixture]
     public class AccountTests
     {

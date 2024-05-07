@@ -63,9 +63,11 @@ namespace BankApplication.Controller
                 // Extract user data from the DataTable and create a User object
                 DataRow row = userData.Rows[0];
                 int id = Convert.ToInt32(row["Id"]);
-                string name = row["Name"].ToString();
-                string address = row["Address"].ToString();
-                string password = row["Password"].ToString();
+
+                string name = row["Name"]?.ToString() ?? throw new Exception("Name column value is null");
+                string address = row["Address"]?.ToString() ?? throw new Exception("Address column value is null");
+                string password = row["Password"]?.ToString() ?? throw new Exception("Name column value is null");
+
                 int balance = Convert.ToInt32(row["Balance"]);
 
                 // Create and return a new User object
@@ -74,7 +76,7 @@ namespace BankApplication.Controller
             else
             {
                 // User not found
-                return null;
+                throw new Exception("User Not found!");
             }
         }
         public bool DepositFunds(string amount, string phoneNumber)
