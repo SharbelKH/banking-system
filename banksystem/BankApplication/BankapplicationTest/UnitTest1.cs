@@ -2,43 +2,71 @@
 using BankApplication.model;
 using System.Data;
 using Moq;
+using Xunit;
+using Microsoft.EntityFrameworkCore;
+using BankApplication.Controller;
+using BankApplication.model;
+
 
 namespace BankApplicationTest
 {
     [TestFixture]
     public class DatabaseTests
     {
-        private IDatabase database; // Use the interface instead of Database
+       private DbContextOptions<BankDbContext> CreateInMemoryOptions()
+       {
+            return new DbContextOptionsBuilder<BankDbContext>()
+                .UseInMemoryDatabase("TestDB") // use a unique name for the in-memory database
+                .Options;
+       }
 
-        [SetUp]
-        public void Setup()
+       [Test]
+       public void AddUser_ShouldAddNewUser()
         {
-            // Initialize the mock IDatabase instance
-            var mockDatabase = new Mock<IDatabase>();
-            mockDatabase.Setup(d => d.ExecuteQuery(It.IsAny<string>())).Returns(new DataTable()); // Mock ExecuteQuery method to return an empty DataTable
-            database = mockDatabase.Object;
+            var options = CreateInMemoryOptions();
+
+            using (var context = new BankDbContext(options))
+            {
+                var repository = new UserRepository(context);
+                repository.AddUser("numbertest", "password123");
+
+                var user = context.Users.FirstOrDefault(u => u.phonenumber == "numbertest");
+
+                Xunit.Assert.NotNull(user);
+                Xunit.Assert.Equal("numbertest", user.phonenumber);
+            }
         }
 
         [Test]
-        public void ExecuteQuery_ReturnsDataTable_WhenQueryIsValid()
+        public void AuthenticateUser_ShouldReturnTrueForValidCredentials()
         {
-            // Arrange
-            string validQuery = "SELECT * FROM TableName";
+            var options = CreateInMemoryOptions();
 
-            // Act
-            DataTable result = database.ExecuteQuery(validQuery);
-            bool boolResult;
+            using (var context = new BankDbContext(options))
+            {
+                var repository = new UserRepository(context);
+                repository.AddUser("numbertest", "password123");
 
-            // Assert
-            if (result == null )
-            {
-                boolResult = false;
+                var isAutenticated = repository.AuthenticateUser1("numbertest", "password123");
+
+                Xunit.Assert.True(isAutenticated);
             }
-            else
+        }
+
+        [Test]
+        public void AuthenticateUser_ShouldReturnFalseForValidCredentials()
+        {
+            var options = CreateInMemoryOptions();
+
+            using (var context = new BankDbContext(options))
             {
-                boolResult = true;
+                var repository = new UserRepository(context);
+                repository.AddUser("numbertest", "password123");
+
+                var isAutenticated = repository.AuthenticateUser1("numbertest", "wrongpassword");
+
+                Xunit.Assert.False(isAutenticated);
             }
-            Assert.That(boolResult, "ExecuteQuery_ReturnsDataTable_WhenQueryIsValid failed");
         }
     }
 
@@ -56,8 +84,8 @@ namespace BankApplicationTest
             bool balance = 100 == (int)account.balance;
 
             // Assert
-            Assert.That(result, "You should be able to Deposit 100 to Savings account!");
-            Assert.That(balance, "Your balance is not 100 which it should be!");
+            NUnit.Framework.Assert.That(result, "You should be able to Deposit 100 to Savings account!");
+            NUnit.Framework.Assert.That(balance, "Your balance is not 100 which it should be!");
         }
 
         [Test]
@@ -73,8 +101,8 @@ namespace BankApplicationTest
 
 
             // Assert
-            Assert.That(result, "You should be able to Withdraw 100 from 200");
-            Assert.That(balance, $"Your balance is {account.balance}, it should be 100!");
+            NUnit.Framework.Assert.That(result, "You should be able to Withdraw 100 from 200");
+            NUnit.Framework.Assert.That(balance, $"Your balance is {account.balance}, it should be 100!");
         }
 
         [Test]
@@ -89,8 +117,8 @@ namespace BankApplicationTest
             bool balance = 50 == (int)account.balance;
 
             // Assert
-            Assert.That(result, "You should not be able to Withdraw 100 from your balance: 50");
-            Assert.That(balance, $"Your balance is {account.balance}, it should be 50");
+            NUnit.Framework.Assert.That(result, "You should not be able to Withdraw 100 from your balance: 50");
+            NUnit.Framework.Assert.That(balance, $"Your balance is {account.balance}, it should be 50");
         }
 
         [Test]
@@ -102,7 +130,7 @@ namespace BankApplicationTest
             bool accountType = "Savings" == savingsAccount.accountType;
 
             // Assert
-            Assert.That(accountType, $"Your accountType = {savingsAccount.accountType}, it should be 'Savings'!");
+            NUnit.Framework.Assert.That(accountType, $"Your accountType = {savingsAccount.accountType}, it should be 'Savings'!");
         }
 
         [Test]
@@ -114,7 +142,7 @@ namespace BankApplicationTest
             bool accountType = "Checking" == checkingAccount.accountType;
 
             // Assert
-            Assert.That(accountType, $"Your accountType = {checkingAccount.accountType}, it should be 'Checking'!");
+            NUnit.Framework.Assert.That(accountType, $"Your accountType = {checkingAccount.accountType}, it should be 'Checking'!");
         }
 
         [Test]
@@ -125,7 +153,7 @@ namespace BankApplicationTest
             bool accountType = "Retirement" == retirementAccount.accountType;
 
             // Assert
-            Assert.That(accountType, $"Your accountType = {retirementAccount.accountType}, it should be 'Retirement'!");
+            NUnit.Framework.Assert.That(accountType, $"Your accountType = {retirementAccount.accountType}, it should be 'Retirement'!");
         }
     }
 }
