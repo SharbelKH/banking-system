@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
 
             <UserControls:TextInputBox x:Name="UsernameIDInput" Grid.Row="1" Width="250" Height="30" 
-                                       Placeholder="UserID" Margin="53,39,85,39"/>
+                                       Placeholder="Phone Number" Margin="53,39,85,39"/>
             
             <UserControls:PasswordInputBox x:Name="PasswordLoginInput" Grid.Row="2" Width="250" Height="30" Placeholder="Password" 
                                            Margin="53,39,85,40"/>

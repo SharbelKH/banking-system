@@ -47,7 +47,7 @@ namespace BankApplication.View
             }
             else
             {
-                MessageBox.Show("Invalid user ID or password!");
+                MessageBox.Show("Invalid phone number or password!");
             }
         }
     }
