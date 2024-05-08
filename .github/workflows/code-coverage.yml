@@ -19,19 +19,19 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore banksystem/BankApplication/BankApplication/BankApplication.csproj
+      run: dotnet restore banksystem/BankApplication/BankApplicationTest/BankApplicationTest.csproj
 
     - name: Build
-      run: dotnet build --no-restore banksystem/BankApplication/BankApplication/BankApplication.csproj
+      run: dotnet build --no-restore banksystem/BankApplication/BankApplicationTest/BankApplicationTest.csproj
 
     - name: Test
-      run: dotnet test --no-build banksystem/BankApplication/BankApplication/BankApplication.csproj --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage 
+      run: dotnet test --no-build banksystem/BankApplication/BankApplicationTest/BankApplicationTest.csproj --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage 
 
     - name: Code Coverage Generator
       run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
     - name: Code Coverage Report - XMl
-      run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:"Cobertura"
+      run: reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:"Cobertura"
 
     - name: Code Coverage Report - HTML
       run: reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:Html
