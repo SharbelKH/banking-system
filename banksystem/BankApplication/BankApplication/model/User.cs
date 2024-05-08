@@ -4,6 +4,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Drawing;
 using System.Net;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankApplication.model
 {
