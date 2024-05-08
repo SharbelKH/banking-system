@@ -12,6 +12,6 @@ namespace BankApplication.model
         DataTable ExecuteQuery(string query);
         int ExecuteNonQuery(string query);
         object ExecuteScalar(string query);
-        void Dispose();
     }
+
 }
