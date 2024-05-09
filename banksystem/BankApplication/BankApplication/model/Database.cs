@@ -1,29 +1,43 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Data;
-using Microsoft.Data.SqlClient;
 
 namespace BankApplication.model
 {
+   public interface IDbConnectionFactory
+    {
+        IDbConnection CreateConnection(string connectionString);
+    }
+
+    public class DefaultDbConnectionFactory : IDbConnectionFactory
+    {
+        public IDbConnection CreateConnection(string connectionString)
+        {
+            return new SqlConnection(connectionString);
+        }
+    }
+
     public class Database : IDisposable, IDatabase
     {
-        // Connection string to your database
         private string connectionString;
-        private SqlConnection connection;
+        private IDbConnection connection;
+        private readonly IDbConnectionFactory connectionFactory;
 
-        public Database(string connectionString)
+        public Database(string connectionString, IDbConnectionFactory connectionFactory)
         {
             this.connectionString = connectionString;
-            this.connection = new SqlConnection(this.connectionString);
+            this.connectionFactory = connectionFactory;
+            this.connection = connectionFactory.CreateConnection(connectionString);
             this.connection.Open();
         }
 
-        // Execute a query that returns data
         public DataTable ExecuteQuery(string query)
         {
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (var command = connection.CreateCommand())
             {
+                command.CommandText = query;
                 DataTable dataTable = new DataTable();
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     dataTable.Load(reader);
                 }
@@ -31,25 +45,32 @@ namespace BankApplication.model
             }
         }
 
-        // Execute a query that doesn't return data (e.g., INSERT, UPDATE, DELETE)
         public int ExecuteNonQuery(string query)
         {
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (var command = connection.CreateCommand())
             {
+                command.CommandText = query;
                 return command.ExecuteNonQuery();
             }
         }
 
-        // Execute a query that returns a single value (e.g., COUNT, MAX, MIN)
         public object ExecuteScalar(string query)
         {
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (var command = connection.CreateCommand())
             {
-                return command.ExecuteScalar();
+                command.CommandText = query;
+                object? result = command.ExecuteScalar();
+                if (result == null)
+                {
+                    // Handle the case where ExecuteScalar returns null
+                    // For example, you can return a default value or throw an exception
+                    throw new InvalidOperationException("ExecuteScalar returned null.");
+                }
+
+                return result;
             }
         }
 
-        // Dispose method to close the connection when the Database object is disposed
         public void Dispose()
         {
             if (connection != null && connection.State == ConnectionState.Open)

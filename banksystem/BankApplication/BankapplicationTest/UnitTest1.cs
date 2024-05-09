@@ -5,11 +5,268 @@ using Moq;
 using Xunit;
 using Microsoft.EntityFrameworkCore;
 using BankApplication.Controller;
-using BankApplication.model;
-
+using BankApplication.myExceptions;
+using Microsoft.Data.SqlClient;
 
 namespace BankApplicationTest
 {
+    [TestFixture]
+    public class DatabaseTestsClass
+    {
+        [Test]
+        public void ExecuteNonQuery_ShouldReturnNumberOfRowsAffected()
+        {
+            // Arrange
+            string query = "INSERT INTO Users (Name, Age) VALUES ('John', 30)";
+
+            // Mock IDbConnection
+            var mockConnection = new Mock<IDbConnection>();
+
+            // Mock IDbCommand
+            var mockCommand = new Mock<IDbCommand>();
+            mockCommand.Setup(cmd => cmd.ExecuteNonQuery())
+                       .Returns(1); // Assuming one row is affected
+
+            mockConnection.Setup(con => con.CreateCommand())
+                          .Returns(mockCommand.Object);
+
+            // Mock IDbConnectionFactory
+            var mockConnectionFactory = new Mock<IDbConnectionFactory>();
+            mockConnectionFactory.Setup(factory => factory.CreateConnection(It.IsAny<string>()))
+                                .Returns(mockConnection.Object);
+
+            // Create an instance of Database using the mock connection factory
+            var database = new Database("fake_connection_string", mockConnectionFactory.Object);
+
+            // Act
+            int rowsAffected = database.ExecuteNonQuery(query);
+
+            // Assert
+            Xunit.Assert.Equal(1, rowsAffected);
+        }
+
+        [Test]
+        public void ExecuteQuery_ShouldReturnDataTable_WhenQueryIsValid()
+        {
+            // Arrange
+            string query = "SELECT * FROM Users";
+
+            // Mock IDbConnection
+            var mockConnection = new Mock<IDbConnection>();
+
+            // Mock IDbCommand
+            var mockCommand = new Mock<IDbCommand>();
+            var mockReader = new Mock<IDataReader>();
+            var dataTable = new DataTable();
+
+            // Setup mock reader to return a valid schema
+            mockReader.Setup(reader => reader.FieldCount)
+                      .Returns(2); // Example field count
+
+            // Setup mock reader to return data rows
+            mockReader.SetupSequence(reader => reader.Read())
+                      .Returns(true) // First row
+                      .Returns(false); // End of data
+
+            // Setup mock reader to return specific column names
+            mockReader.Setup(reader => reader.GetName(0)).Returns("ColumnName1");
+            mockReader.Setup(reader => reader.GetName(1)).Returns("ColumnName2");
+
+            // Setup mock reader to return data types for columns
+            mockReader.Setup(reader => reader.GetFieldType(0)).Returns(typeof(int)); // Example data type for column 1
+            mockReader.Setup(reader => reader.GetFieldType(1)).Returns(typeof(string)); // Example data type for column 2
+
+            mockCommand.Setup(cmd => cmd.ExecuteReader())
+                       .Returns(mockReader.Object);
+
+            mockConnection.Setup(con => con.CreateCommand())
+                          .Returns(mockCommand.Object);
+
+            // Mock IDbConnectionFactory
+            var mockConnectionFactory = new Mock<IDbConnectionFactory>();
+            mockConnectionFactory.Setup(factory => factory.CreateConnection(It.IsAny<string>()))
+                                .Returns(mockConnection.Object);
+
+            // Create an instance of Database using the mock connection factory
+            var database = new Database("fake_connection_string", mockConnectionFactory.Object);
+
+            // Act
+            DataTable result = database.ExecuteQuery(query);
+
+            // Assert
+            Xunit.Assert.NotNull(result);
+            // Add more assertions as needed
+        }
+
+        [Test]
+        public void ExecuteScalar_ShouldReturnScalarValue_WhenQueryIsValid()
+        {
+            // Arrange
+            string query = "SELECT COUNT(*) FROM Users";
+            int expectedResult = 10; // Example expected result
+
+            // Mock IDbConnection
+            var mockConnection = new Mock<IDbConnection>();
+
+            // Mock IDbCommand
+            var mockCommand = new Mock<IDbCommand>();
+            mockCommand.Setup(cmd => cmd.ExecuteScalar())
+                       .Returns(expectedResult); // Mock the ExecuteScalar method to return the expected result
+
+            mockConnection.Setup(con => con.CreateCommand())
+                          .Returns(mockCommand.Object);
+
+            // Mock IDbConnectionFactory
+            var mockConnectionFactory = new Mock<IDbConnectionFactory>();
+            mockConnectionFactory.Setup(factory => factory.CreateConnection(It.IsAny<string>()))
+                                .Returns(mockConnection.Object);
+
+            // Create an instance of Database using the mock connection factory
+            var database = new Database("fake_connection_string", mockConnectionFactory.Object);
+
+            // Act
+            object result = database.ExecuteScalar(query);
+
+            // Assert
+            Xunit.Assert.Equal(expectedResult, result);
+        }
+
+        [Test]
+        public void Dispose_ShouldCloseConnection_WhenConnectionIsOpen()
+        {
+            // Arrange
+            var mockConnection = new Mock<IDbConnection>();
+            mockConnection.SetupGet(c => c.State).Returns(ConnectionState.Open);
+
+            var mockConnectionFactory = new Mock<IDbConnectionFactory>();
+            mockConnectionFactory.Setup(factory => factory.CreateConnection(It.IsAny<string>()))
+                                .Returns(mockConnection.Object);
+
+            // Create an instance of Database
+            var database = new Database("fake_connection_string", mockConnectionFactory.Object);
+
+            // Act
+            database.Dispose();
+
+            // Assert
+            mockConnection.Verify(c => c.Close(), Times.Once);
+        }
+
+        [Test]
+        public void Dispose_ShouldNotCloseConnection_WhenConnectionIsClosed()
+        {
+            // Arrange
+            var mockConnection = new Mock<IDbConnection>();
+            mockConnection.SetupGet(c => c.State).Returns(ConnectionState.Closed);
+
+            var mockConnectionFactory = new Mock<IDbConnectionFactory>();
+            mockConnectionFactory.Setup(factory => factory.CreateConnection(It.IsAny<string>()))
+                                .Returns(mockConnection.Object);
+
+            // Create an instance of Database
+            var database = new Database("fake_connection_string", mockConnectionFactory.Object);
+
+            // Act
+            database.Dispose();
+
+            // Assert
+            mockConnection.Verify(c => c.Close(), Times.Never);
+        }
+    }
+
+
+        [TestFixture]
+    public class UserTest
+    {
+        [Test]
+        public void Deposit_less_than_10000()
+        {
+            // Arrange
+            var user = new User(1, "John", "1234567890", "Address", "password", 1000);
+
+            // Act
+            var result = user.Deposit(5000);
+
+            // Assert
+            Xunit.Assert.True(result);
+            Xunit.Assert.Equal(6000, user.Balance);
+        }
+
+        [Test]
+        public void Deposit_more_than_10000()
+        {
+            // Arrange
+            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+
+            // Act
+            var result = user.Deposit(15000);
+
+            // Assert
+            Xunit.Assert.False(result);
+            Xunit.Assert.Equal(3000, user.Balance);
+        }
+
+        [Test]
+        public void Withdraw_less_than_available_balance()
+        {
+            // Arrange
+            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+
+            // Act
+            var result = user.Withdraw(100);
+
+            // Assert
+            Xunit.Assert.True(result);
+            Xunit.Assert.Equal(2900, user.Balance);
+        }
+        [Test]
+        public void Withdraw_more_than_available_balance()
+        {
+            // Arrange
+            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+
+            // Act
+            var result = user.Withdraw(4000);
+
+            // Assert
+            Xunit.Assert.False(result);
+            Xunit.Assert.Equal(3000, user.Balance);
+
+        }
+
+
+    }
+
+        [TestFixture]
+    public class ExceptionTests
+    {
+        [Test]
+        public void testInvalidSourceException()
+        {
+            // Arrange
+            var exception = new invalid_source();
+
+            // Act
+            var message = exception.Message;
+
+            // Assert
+            Xunit.Assert.Equal("Invalid source or destination account number", message);
+        }
+
+        [Test]
+        public void testInsufficientFundsException()
+        {
+            // Arrange
+            var exception = new insufficientFunds();
+
+            // Act
+            var message = exception.Message;
+
+            // Assert
+            Xunit.Assert.Equal("Insufficient funds", message);
+        }
+    }
+
     [TestFixture]
     public class DatabaseTests
     {

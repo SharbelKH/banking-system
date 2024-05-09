@@ -9,8 +9,11 @@ namespace BankApplication.model
 {
     public class BankDbContext : DbContext
     {
-        public DbSet<User1> Users { get; set; } 
+        public DbSet<User1> Users { get; set; }
 
-        public BankDbContext(DbContextOptions<BankDbContext> options) : base(options) { }   
+        public BankDbContext(DbContextOptions<BankDbContext> options) : base(options)
+        {
+            Users = Set<User1>();
+        }
     }
 }

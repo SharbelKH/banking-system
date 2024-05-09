@@ -13,7 +13,7 @@ namespace BankApplication.model
         //for in memory test
         [Key]   //Indicates this property is the primary key for the entity
         public int UserID { get; set; }
-        public string phonenumber { get; set; }
-        public string password { get; set; }
+        public string ?phonenumber { get; set; }
+        public string ?password { get; set; }
     }
 }

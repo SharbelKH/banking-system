@@ -19,7 +19,8 @@ namespace BankApplication.View
         {
             InitializeComponent();
             string connectionstring = OurSqlConnectionString.ConString;
-            db = new Database(connectionstring);
+            var connectionFactory = new DefaultDbConnectionFactory();
+            db = new Database(connectionstring, connectionFactory);
             userController = new UserController(db);
         }
 
