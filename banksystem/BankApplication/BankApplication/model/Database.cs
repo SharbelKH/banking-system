@@ -4,19 +4,6 @@ using System.Data;
 
 namespace BankApplication.model
 {
-   public interface IDbConnectionFactory
-    {
-        IDbConnection CreateConnection(string connectionString);
-    }
-
-    public class DefaultDbConnectionFactory : IDbConnectionFactory
-    {
-        public IDbConnection CreateConnection(string connectionString)
-        {
-            return new SqlConnection(connectionString);
-        }
-    }
-
     public class Database : IDisposable, IDatabase
     {
         private string connectionString;

@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using BankApplication.Controller;
 using BankApplication.myExceptions;
 using Microsoft.Data.SqlClient;
+using static BankApplication.model.Account;
+using BankApplication;
 
 namespace BankApplicationTest
 {
@@ -175,7 +177,7 @@ namespace BankApplicationTest
     }
 
 
-        [TestFixture]
+    [TestFixture]
     public class UserTest
     {
         [Test]
@@ -237,7 +239,7 @@ namespace BankApplicationTest
 
     }
 
-        [TestFixture]
+    [TestFixture]
     public class ExceptionTests
     {
         [Test]
@@ -270,15 +272,15 @@ namespace BankApplicationTest
     [TestFixture]
     public class DatabaseTests
     {
-       private DbContextOptions<BankDbContext> CreateInMemoryOptions()
-       {
+        private DbContextOptions<BankDbContext> CreateInMemoryOptions()
+        {
             return new DbContextOptionsBuilder<BankDbContext>()
                 .UseInMemoryDatabase("TestDB") // use a unique name for the in-memory database
                 .Options;
-       }
+        }
 
-       [Test]
-       public void AddUser_ShouldAddNewUser()
+        [Test]
+        public void AddUser_ShouldAddNewUser()
         {
             var options = CreateInMemoryOptions();
 
@@ -412,5 +414,26 @@ namespace BankApplicationTest
             // Assert
             NUnit.Framework.Assert.That(accountType, $"Your accountType = {retirementAccount.accountType}, it should be 'Retirement'!");
         }
+    }
+
+    [TestFixture]
+    public class DefaultDbConnectionFactoryTest
+    {
+        [Test]
+        public void CreateConnection_ReturnsSqlConnection()
+        {
+            // Arrange
+            var factory = new DefaultDbConnectionFactory();
+            var connectionString = OurSqlConnectionString.ConString;
+            var sqlconnection = new SqlConnection();
+           
+            // Act
+            var connection = factory.CreateConnection(connectionString);
+            bool result = connection.GetType() == sqlconnection.GetType();
+
+            // Assert
+            NUnit.Framework.Assert.That(result, "DefaultDbConnectionFactory does not return SqlConnection");
+        }
+
     }
 }
