@@ -12,6 +12,7 @@ using BankApplication.View.UserControls;
 using BankApplication.View;
 using System.Threading;
 using System.Windows;
+using System.Xaml.Schema;
 
 namespace BankApplicationTest
 {
@@ -423,11 +424,20 @@ namespace BankApplicationTest
     [Apartment(ApartmentState.STA)]
     public class PasswordInputBoxTest
     {
+
+        private PasswordInputBox passwordInputBox;
+
+        [SetUp]
+        public void SetUp()
+        {
+            passwordInputBox = new PasswordInputBox();
+        }
+
+
         [Test]
         public void TestPlaceholderProperty()
         {
             // Arrange
-            var passwordInputBox = new PasswordInputBox();
             string expectedPlaceholder = "Enter your password";
 
             // Act
@@ -442,7 +452,6 @@ namespace BankApplicationTest
         public void TestSetPassword()
         {
             // Arrange
-            var passwordInputBox = new PasswordInputBox();
             string testPassword = "test";
 
             // Act
@@ -450,6 +459,28 @@ namespace BankApplicationTest
 
             // Assert
             Xunit.Assert.Equal("test", testPassword);
+        }
+
+        [Test]
+        public void PasswordVisibility_DefaultState_IsFalse()
+        {
+            // Act
+            bool initialState = passwordInputBox.isPasswordVisible;
+
+            // Assert
+            Xunit.Assert.False(initialState, "By default, password visibility should be false.");
+        }
+
+        [Test]
+        public void IsPlaceholderEmpty()
+        {
+            // Act
+            bool IsEmpty = passwordInputBox.Placeholder.Equals(string.Empty);
+            bool IsNull = passwordInputBox.Placeholder.Equals(null);
+
+            // Assert
+            Xunit.Assert.True(IsEmpty, "Is Empty");
+            Xunit.Assert.False(IsNull, "Should be Empty, not Null");
         }
     }
 }
