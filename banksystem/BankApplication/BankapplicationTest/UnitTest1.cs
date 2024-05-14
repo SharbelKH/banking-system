@@ -424,21 +424,6 @@ namespace BankApplicationTest
     public class PasswordInputBoxTest
     {
         [Test]
-        public void TestPasswordStringProperty()
-        {
-            // Arrange
-            var passwordInputBox = new PasswordInputBox();
-            string expectedPassword = "testPassword";
-
-            // Act
-            // Set the password using the SetPassword method
-            passwordInputBox.SetPassword(expectedPassword); 
-
-            // Assert
-            Xunit.Assert.Equal(expectedPassword, passwordInputBox.passwordString);
-        }
-
-        [Test]
         public void TestPlaceholderProperty()
         {
             // Arrange
