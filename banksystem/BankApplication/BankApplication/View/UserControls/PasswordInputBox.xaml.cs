@@ -9,7 +9,7 @@ namespace BankApplication.View.UserControls
     /// </summary>
     public partial class PasswordInputBox : UserControl
     {
-        private bool isPasswordVisible = false;
+        public bool isPasswordVisible = false; // default
         public PasswordInputBox()
         {
             InitializeComponent();
@@ -30,6 +30,11 @@ namespace BankApplication.View.UserControls
                placeholder = value;
                tbPlaceholder.Text = placeholder;
             }
+        }
+
+        public void SetPassword(string password)
+        {
+            passwordInput.Password = password;
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -53,7 +58,7 @@ namespace BankApplication.View.UserControls
             tbPlaceholder.Visibility = Visibility.Hidden;
         }
 
-        private void show_Password(object sender, RoutedEventArgs e)
+        public void show_Password(object sender, RoutedEventArgs e)
         {
             if (!isPasswordVisible)
             {
