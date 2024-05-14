@@ -3,10 +3,15 @@ using BankApplication.model;
 using System.Data;
 using Moq;
 using Xunit;
+using NUnit.Framework;
 using Microsoft.EntityFrameworkCore;
 using BankApplication.Controller;
 using BankApplication.myExceptions;
 using Microsoft.Data.SqlClient;
+using BankApplication.View.UserControls;
+using BankApplication.View;
+using System.Threading;
+using System.Windows;
 
 namespace BankApplicationTest
 {
@@ -411,6 +416,55 @@ namespace BankApplicationTest
 
             // Assert
             NUnit.Framework.Assert.That(accountType, $"Your accountType = {retirementAccount.accountType}, it should be 'Retirement'!");
+        }
+    }
+
+    [TestFixture]
+    [Apartment(ApartmentState.STA)]
+    public class PasswordInputBoxTest
+    {
+        [Test]
+        public void TestPasswordStringProperty()
+        {
+            // Arrange
+            var passwordInputBox = new PasswordInputBox();
+            string expectedPassword = "testPassword";
+
+            // Act
+            // Set the password using the SetPassword method
+            passwordInputBox.SetPassword(expectedPassword); 
+
+            // Assert
+            Xunit.Assert.Equal(expectedPassword, passwordInputBox.passwordString);
+        }
+
+        [Test]
+        public void TestPlaceholderProperty()
+        {
+            // Arrange
+            var passwordInputBox = new PasswordInputBox();
+            string expectedPlaceholder = "Enter your password";
+
+            // Act
+            passwordInputBox.Placeholder = expectedPlaceholder;
+            string actualPlaceholder = passwordInputBox.Placeholder;
+
+            // Assert
+            Xunit.Assert.Equal(expectedPlaceholder, actualPlaceholder);
+        }
+
+        [Test]
+        public void TestSetPassword()
+        {
+            // Arrange
+            var passwordInputBox = new PasswordInputBox();
+            string testPassword = "test";
+
+            // Act
+            passwordInputBox.SetPassword(testPassword);
+
+            // Assert
+            Xunit.Assert.Equal("test", testPassword);
         }
     }
 }

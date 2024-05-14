@@ -32,6 +32,11 @@ namespace BankApplication.View.UserControls
             }
         }
 
+        public void SetPassword(string password)
+        {
+            passwordInput.Password = password;
+        }
+
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             if (isPasswordVisible)
