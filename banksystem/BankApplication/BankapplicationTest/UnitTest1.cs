@@ -13,6 +13,7 @@ using BankApplication.View;
 using System.Threading;
 using System.Windows;
 using System.Xaml.Schema;
+using BankApplication;
 
 namespace BankApplicationTest
 {
@@ -481,6 +482,24 @@ namespace BankApplicationTest
             // Assert
             Xunit.Assert.True(IsEmpty, "Is Empty");
             Xunit.Assert.False(IsNull, "Should be Empty, not Null");
+        }
+    }
+
+    [TestFixture]
+
+    public class OurSqlConnectionStringTests
+    {
+        [Test]
+        public void TestConnectionStringEmpty()
+        {
+            //Arrange
+
+            //Act
+            string connectionString = OurSqlConnectionString.ConString;
+
+            //Assert
+            Xunit.Assert.Null(connectionString);
+            Xunit.Assert.Empty(connectionString);
         }
     }
 }
