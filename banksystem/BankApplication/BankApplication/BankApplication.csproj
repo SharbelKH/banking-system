@@ -23,6 +23,7 @@
 	<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
 
 	<ExcludeFromCodeCoverage Include="View/UserControls/PasswordInputBox.xaml" />
+	<ExcludeFromCodeCoverage Include="View/UserControls/TextInputBox.xaml" />
 
   </ItemGroup>
 </Project>

@@ -13,6 +13,7 @@ using BankApplication.View;
 using System.Threading;
 using System.Windows;
 using System.Xaml.Schema;
+using System.Windows.Controls;
 
 namespace BankApplicationTest
 {
@@ -424,7 +425,6 @@ namespace BankApplicationTest
     [Apartment(ApartmentState.STA)]
     public class PasswordInputBoxTest
     {
-
         private PasswordInputBox passwordInputBox;
 
         [SetUp]
@@ -481,6 +481,32 @@ namespace BankApplicationTest
             // Assert
             Xunit.Assert.True(IsEmpty, "Is Empty");
             Xunit.Assert.False(IsNull, "Should be Empty, not Null");
+        }
+
+        [Test]
+        public void PasswordString_ShouldReturnPassword()
+        {
+            // Arrange
+            passwordInputBox.SetPassword("testpassword");
+
+            // Act
+            var result = passwordInputBox.passwordString;
+
+            // Assert
+            Xunit.Assert.Equal("testpassword", result);
+        }
+
+        [Test]
+        public void BtnClear_Click_ShouldClearPasswordInputs()
+        {
+            // Arrange
+            passwordInputBox.SetPassword("password");
+
+            // Act
+            passwordInputBox.btnClear_Click(null!, null!);
+
+            // Assert
+            Xunit.Assert.Empty(passwordInputBox.passwordString);
         }
     }
 }
