@@ -9,21 +9,22 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+	<!-- Package References -->
+	<ItemGroup>
+		<PackageReference Include="MaterialDesignColors" Version="3.0.0" />
+		<PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.29" />
+		<PackageReference Include="Moq" Version="4.18.4" />
+		<PackageReference Include="NUnit" Version="4.1.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+	</ItemGroup>
+
+  <!-- Exclude Specific Files from Code Coverage -->
   <ItemGroup>
-    <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
-	  
-	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
-	  
-	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.29" />
-	  
-	<PackageReference Include="Moq" Version="4.18.4" />
-
-	<PackageReference Include="NUnit" Version="4.1.0" />
-	<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-
 	<ExcludeFromCodeCoverage Include="View/UserControls/PasswordInputBox.xaml" />
 	<ExcludeFromCodeCoverage Include="View/UserControls/TextInputBox.xaml" />
-
+	<ExcludeFromCodeCoverage Include="App.xaml" />
+	<ExcludeFromCodeCoverage Include="obj\Debug\net6.0-windows7.0\App.g.cs" />
   </ItemGroup>
 </Project>
