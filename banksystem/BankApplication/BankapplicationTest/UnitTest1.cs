@@ -13,6 +13,7 @@ using BankApplication.View;
 using System.Threading;
 using System.Windows;
 using System.Xaml.Schema;
+using BankApplication;
 using System.Windows.Controls;
 
 namespace BankApplicationTest
@@ -507,6 +508,24 @@ namespace BankApplicationTest
 
             // Assert
             Xunit.Assert.Empty(passwordInputBox.passwordString);
+        }
+    }
+
+    [TestFixture]
+
+    public class OurSqlConnectionStringTests
+    {
+        [Test]
+        public void TestConnectionStringEmpty()
+        {
+            //Arrange
+
+            //Act
+            string connectionString = OurSqlConnectionString.ConString;
+
+            //Assert
+            //Xunit.Assert.Null(connectionString);
+            Xunit.Assert.NotEmpty(connectionString);
         }
     }
 }
