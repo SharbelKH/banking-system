@@ -524,8 +524,8 @@ namespace BankApplicationTest
             string connectionString = OurSqlConnectionString.ConString;
 
             //Assert
-            Xunit.Assert.Null(connectionString);
-            Xunit.Assert.Empty(connectionString);
+            //Xunit.Assert.Null(connectionString);
+            Xunit.Assert.NotEmpty(connectionString);
         }
     }
 }
