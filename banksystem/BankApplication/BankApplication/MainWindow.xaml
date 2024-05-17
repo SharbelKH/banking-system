@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankApplication"
+        xmlns:UserControls="clr-namespace:BankApplication.View.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="550" Width="800" WindowStartupLocation="CenterScreen">
     <Border CornerRadius="20">
         <Grid Background="Beige" >
             <Grid.ColumnDefinitions>
@@ -13,20 +14,46 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="FirstAndSurname" Grid.Column="0" Height="20" Width="100" Text="Username" Margin="78,3,222,411" Background="Beige"/>
-            <TextBox Text="Account Details"   Grid.Column="0" FontSize="18" Background="Beige" Margin="146,26,126,381"/>
-            <ListBox Name ="AccountListBox" Grid.Column="0" Width="300" Height="140" Margin="60,53,40,241" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="39"/>
+                <RowDefinition Height="241"/>
+                <RowDefinition Height="250"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="FirstAndSurname" 
+                   Grid.Row="0" HorizontalAlignment="Left"
+                   Content="Username" Grid.Column="0"
+                   Background="Beige" Margin="65,4,0,3"
+                   FontWeight="Medium" BorderBrush="Transparent"/>
+            <!--put binding placeholder to username in this label-->
+
+            <Label Content="Account Details" 
+                   FontSize="15" Background="Transparent" HorizontalAlignment="Center"
+                   VerticalAlignment="Top" FontWeight="Medium"
+                   BorderBrush="Transparent" Grid.Row="1" Height="30" Width="116"/>
+
+            <ListBox Name ="AccountListBox" 
+                     HorizontalAlignment="Center" VerticalAlignment="Center" 
+                     Height="180" Width="240" Grid.Row="1" 
+                     BorderBrush="LightGray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding AccountID}" Margin ="5"/>
-                            <TextBlock Text="{Binding Amount}"    Margin  ="5"/>
+                            <TextBlock Text="{Binding Amount}" Margin  ="5"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <ListBox Name ="TransactionListBox" Grid.Column="0" Width="300" Margin="60,249,40,43">
+            <Label Content="Transaction History" Background="Transparent" 
+                   FontSize="15" Grid.Row="2" VerticalAlignment="Top" 
+                   FontWeight="Medium" HorizontalAlignment="Center" 
+                   BorderBrush="Transparent" Height="30" Width="142"/>
+
+            <ListBox Name ="TransactionListBox" Grid.Row="2" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" Height="180" Width="240" 
+                     BorderBrush="LightGray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -38,33 +65,88 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
+            <Button x:Name="Logout" Style="{DynamicResource RoundedButton}" Content="Log Out" 
+                    Click="Logout_Click" HorizontalAlignment="Left" 
+                    Margin="10,0,0,0" VerticalAlignment="Center"
+                    ToolTip="Log out of this session"
+                    BorderBrush="DarkGray" Foreground="DarkGray"
+                    Background="White" FontSize="10" FontWeight="Medium" Height="18" Width="50"/>
 
+            <Label Content="Deposit" 
+                   Grid.Column="1" Background="Transparent"  
+                   FontSize="15" FontWeight="Medium" HorizontalAlignment="Center"
+                   VerticalAlignment="Top" Margin="0,34,0,0" Grid.RowSpan="2"/>
 
+            <UserControls:TextInputBox x:Name="DepositID" 
+                     Placeholder="Deposit too:"  
+                     Grid.Row="1" Width="250" Height="30" 
+                     HorizontalAlignment="Center" Grid.Column="1" Margin="0,30,0,181"/>
 
-            <TextBox   Text="TransactionHistory"    Grid.Column="0" Background="Beige" Margin="132,225,112,185" FontSize="18"/>
+            <UserControls:TextInputBox x:Name="DepositAmount" 
+                     Placeholder="Deposit amount"  
+                     Height="30" Width="250" HorizontalAlignment="Center"
+                     Grid.Row="1" Grid.Column="1" Margin="0,65,0,146"/>
 
-            <Button x:Name="Logout" Content="Log Out" Click="Logout_Click" Height="20" Width="60" Margin="8,3,332,411"/>
+            <Button x:Name ="Deposit" 
+                    Style="{DynamicResource RoundedButton}" Content="Deposit" 
+                    Grid.Column="1" Grid.Row="1" Height="30" Width="100" 
+                    ToolTip="Deposit money" BorderBrush="DarkGray"
+                    Click="Deposit_Click" Foreground="DarkGray" 
+                    HorizontalAlignment="Center" Margin="0,100,0,111"/>
 
+            <Label Content="Transfer" 
+                   Grid.Column="1" Background="Transparent"  
+                   FontSize="15" Grid.Row="1" VerticalAlignment="Top"
+                   FontWeight="Medium" HorizontalAlignment="Center" 
+                   Margin="0,135,0,0"/>
 
-            <TextBox Text="Deposit" Height="21" Grid.Column="1" Width="80" Background="Beige"  FontSize="15" Margin="46,56,274,357"/>
-            <TextBox x:Name="DepositID" Text="Deposit too:" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,115,264,304"/>
-            <TextBox x:Name="DepositAmount" Text="Deposit amount" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,91,264,329"/>
-            <Button x:Name ="Deposit" Content="Deposit" Grid.Column="1" Background="Gray"  Margin="46,147,309,272" Click="Deposit_Click" FontSize="8" Foreground="White"/>
+            <UserControls:TextInputBox x:Name ="TransferID" 
+                     Placeholder="Transfer too:" 
+                     Width="250" Grid.Column="1" Height="30" HorizontalAlignment="Center"
+                     Margin="0,165,0,46" Grid.Row="1"/>
 
+            <UserControls:TextInputBox x:Name="TransferAmount" 
+                     Placeholder="Transfer amount" 
+                     Grid.Column="1" Grid.Row="1" Height="30" Width="250" 
+                     HorizontalAlignment="Center" Margin="0,200,0,11"/>
 
+            <Button x:Name ="Transfer" 
+                    Style="{DynamicResource RoundedButton}" Content="Transfer" 
+                    Grid.Column="1" Grid.Row="1" Height="30" Width="100"
+                    ToolTip="Transfer money" BorderBrush="DarkGray"
+                    Click="Transfer_Click" Foreground="DarkGray"
+                    HorizontalAlignment="Center"  
+                    Grid.RowSpan="2" Margin="0,235,0,226"/>
 
-            <TextBox Text="Transfer" Height="21" Grid.Column="1" Width="80" Background="Beige"  FontSize="15" Margin="238,56,82,357"/>
-            <TextBox x:Name ="TransferID" Text="Transfer too:" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="238,115,72,304" />
-            <TextBox x:Name="TransferAmount" Text="Transfer amount" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="238,91,72,328" />
-            <Button x:Name ="Transfer" Content="Transfer" Grid.Column="1" Background="Gray" Click="Transfer_Click" Margin="238,147,117,272" FontSize="8" Foreground="White"/>
+            <Label Content="Withdraw" Grid.Column="1" Background="Transparent" 
+                   FontSize="15" Grid.Row="2"
+                   VerticalAlignment="Top" HorizontalAlignment="Center"
+                   FontWeight="Medium" Margin="0,29,0,0"/>
 
-            <TextBox Text="Withdraw" Height="21" Grid.Column="1" Width="80" Background="Beige" FontSize="15" Margin="46,207,274,206"/>
-            <TextBox x:Name="WithdrawFromAccount" Text="From account" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,244,264,175"/>
-            <TextBox x:Name="WithdrawToAccount" Text="To account" Height="15" Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,275,264,144"/>
-            <TextBox x:Name="AmountToWithdraw" Text="Amount" Height="15"    Grid.Column="1" Width="90" Background="White" FontSize="10" Margin="46,305,264,114"/>
-            <Button x:Name="Withdraw" Content="Withdraw" Grid.Column="1" Background="Gray" Click="Withdraw_Click" FontSize="8" Foreground="White" Margin="46,331,309,88"/>
+            <UserControls:TextInputBox x:Name="WithdrawFromAccount" 
+                     Placeholder="From account" 
+                     Grid.Column="1" Height="30" Width="250"
+                     HorizontalAlignment="Center" VerticalAlignment="Top"
+                     Grid.Row="2" Margin="0,64,0,0"/>
 
+            <UserControls:TextInputBox x:Name="WithdrawToAccount" 
+                     Placeholder="To account" 
+                     Grid.Column="1" Height="30"
+                     Width="250" HorizontalAlignment="Center" 
+                     Grid.Row="2" Margin="0,99,0,121"/>
 
+            <UserControls:TextInputBox x:Name="AmountToWithdraw" 
+                     Placeholder="Amount"    
+                     Grid.Column="1" Height="30" Width="250" 
+                     Grid.Row="2" Margin="0,134,0,86"
+                     HorizontalAlignment="Center" />
+
+            <Button x:Name="Withdraw" 
+                    Style="{DynamicResource RoundedButton}" Content="Withdraw" 
+                    Grid.Column="1" Grid.Row="2" Height="30" Width="100"
+                    ToolTip="Withdraw money" BorderBrush="DarkGray"
+                    Click="Withdraw_Click" HorizontalAlignment="Center"
+                    Foreground="DarkGray" VerticalAlignment="Top" Margin="0,169,0,0"/>
         </Grid>
     </Border>
 </Window>
