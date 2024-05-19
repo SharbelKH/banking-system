@@ -5,11 +5,13 @@ using System;
 using System.Drawing;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+
 
 namespace BankApplication.model
 {
-    public class User
-	{
+    public class User : INotifyPropertyChanged
+    {
 
         public int Id { get; private set; }
         public string Name { get; private set; }
@@ -35,6 +37,7 @@ namespace BankApplication.model
             if (amount <= 10000)
             {
                 Balance += amount;
+                OnPropertyChanged(nameof(Balance));
                 return true;
             }
             else
@@ -48,6 +51,7 @@ namespace BankApplication.model
             if (amount <= Balance)
             {
                 Balance -= amount;
+                OnPropertyChanged(nameof(Balance));
                 return true;
             }
             else
@@ -55,5 +59,12 @@ namespace BankApplication.model
                 return false;
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
 }

@@ -14,6 +14,7 @@ using BankApplication.model;
 using BankApplication.View;
 using BankApplication.myExceptions;
 using BankApplication.Controller;
+using System.Collections.ObjectModel;
 
 namespace BankApplication
 {
@@ -29,6 +30,7 @@ namespace BankApplication
     {
         private Database db;
         private UserController userController;
+        public ObservableCollection<User> UserCollection { get; set; }
 
         public MainWindow(Database db, User user)
         {
@@ -36,6 +38,11 @@ namespace BankApplication
             this.db = db;
             userController = new UserController(db);
             ApplicationUser.LoggedInUser = user;
+            UserCollection = new ObservableCollection<User>
+            {
+               ApplicationUser.LoggedInUser
+            };
+            this.DataContext = this;
             this.Loaded += MainWindow_Loaded;
         }
 
