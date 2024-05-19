@@ -35,12 +35,17 @@
             <ListBox Name ="AccountListBox" 
                      HorizontalAlignment="Center" VerticalAlignment="Center" 
                      Height="180" Width="240" Grid.Row="1" 
-                     BorderBrush="LightGray">
+                     BorderBrush="LightGray"
+                     ItemsSource="{Binding UserCollection}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding AccountID}" Margin ="5"/>
-                            <TextBlock Text="{Binding Amount}" Margin  ="5"/>
+                            <TextBlock Text="{Binding Id}" Margin ="5"/>
+                            <TextBlock Text="{Binding Balance}" Margin  ="5"/>
+                            <TextBlock Text="{Binding Name}" Margin ="5"/>
+                            <TextBlock Text="{Binding Address}" Margin ="5"/>
+                            <TextBlock Text="{Binding PhoneNumber}" Margin ="5"/>
+
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
