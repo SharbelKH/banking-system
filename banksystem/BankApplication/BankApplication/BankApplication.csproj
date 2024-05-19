@@ -24,6 +24,8 @@
 	<ExcludeFromCodeCoverage Include="BankApplication.App" />
 
 
-  </ItemGroup>
+	<ExcludeFromCodeCoverage Include="View/UserControls/PasswordInputBox.xaml" />
+	<ExcludeFromCodeCoverage Include="View/UserControls/TextInputBox.xaml" />
 
+  </ItemGroup>
 </Project>

@@ -3,12 +3,20 @@ using BankApplication.model;
 using System.Data;
 using Moq;
 using Xunit;
+using NUnit.Framework;
 using Microsoft.EntityFrameworkCore;
 using BankApplication.Controller;
 using BankApplication.myExceptions;
 using Microsoft.Data.SqlClient;
 using static BankApplication.model.Account;
+using BankApplication.View.UserControls;
+using BankApplication.View;
+using System.Threading;
+using System.Windows;
+using System.Xaml.Schema;
 using BankApplication;
+using System.Windows.Controls;
+
 
 namespace BankApplicationTest
 {
@@ -434,6 +442,111 @@ namespace BankApplicationTest
             // Assert
             NUnit.Framework.Assert.That(result, "DefaultDbConnectionFactory does not return SqlConnection");
         }
+    }
 
+    [Apartment(ApartmentState.STA)]
+    public class PasswordInputBoxTest
+    {
+        private PasswordInputBox passwordInputBox;
+
+        [SetUp]
+        public void SetUp()
+        {
+            passwordInputBox = new PasswordInputBox();
+        }
+
+
+        [Test]
+        public void TestPlaceholderProperty()
+        {
+            // Arrange
+            string expectedPlaceholder = "Enter your password";
+
+            // Act
+            passwordInputBox.Placeholder = expectedPlaceholder;
+            string actualPlaceholder = passwordInputBox.Placeholder;
+
+            // Assert
+            Xunit.Assert.Equal(expectedPlaceholder, actualPlaceholder);
+        }
+
+        [Test]
+        public void TestSetPassword()
+        {
+            // Arrange
+            string testPassword = "test";
+
+            // Act
+            passwordInputBox.SetPassword(testPassword);
+
+            // Assert
+            Xunit.Assert.Equal("test", testPassword);
+        }
+
+        [Test]
+        public void PasswordVisibility_DefaultState_IsFalse()
+        {
+            // Act
+            bool initialState = passwordInputBox.isPasswordVisible;
+
+            // Assert
+            Xunit.Assert.False(initialState, "By default, password visibility should be false.");
+        }
+
+        [Test]
+        public void IsPlaceholderEmpty()
+        {
+            // Act
+            bool IsEmpty = passwordInputBox.Placeholder.Equals(string.Empty);
+            bool IsNull = passwordInputBox.Placeholder.Equals(null);
+
+            // Assert
+            Xunit.Assert.True(IsEmpty, "Is Empty");
+            Xunit.Assert.False(IsNull, "Should be Empty, not Null");
+        }
+
+        [Test]
+        public void PasswordString_ShouldReturnPassword()
+        {
+            // Arrange
+            passwordInputBox.SetPassword("testpassword");
+
+            // Act
+            var result = passwordInputBox.passwordString;
+
+            // Assert
+            Xunit.Assert.Equal("testpassword", result);
+        }
+
+        [Test]
+        public void BtnClear_Click_ShouldClearPasswordInputs()
+        {
+            // Arrange
+            passwordInputBox.SetPassword("password");
+
+            // Act
+            passwordInputBox.btnClear_Click(null!, null!);
+
+            // Assert
+            Xunit.Assert.Empty(passwordInputBox.passwordString);
+        }
+    }
+
+    [TestFixture]
+
+    public class OurSqlConnectionStringTests
+    {
+        [Test]
+        public void TestConnectionStringEmpty()
+        {
+            //Arrange
+
+            //Act
+            string connectionString = OurSqlConnectionString.ConString;
+
+            //Assert
+            //Xunit.Assert.Null(connectionString);
+            Xunit.Assert.NotEmpty(connectionString);
+        }
     }
 }

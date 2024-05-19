@@ -9,7 +9,7 @@ namespace BankApplication.View.UserControls
     /// </summary>
     public partial class PasswordInputBox : UserControl
     {
-        private bool isPasswordVisible = false;
+        public bool isPasswordVisible = false; // default
         public PasswordInputBox()
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace BankApplication.View.UserControls
             get { return passwordInput.Password; }
         }
 
-        private string placeholder = string.Empty;
+        public string placeholder = string.Empty;
 
         public string Placeholder
         {
@@ -32,7 +32,12 @@ namespace BankApplication.View.UserControls
             }
         }
 
-        private void btnClear_Click(object sender, RoutedEventArgs e)
+        public void SetPassword(string password)
+        {
+            passwordInput.Password = password;
+        }
+
+        public void btnClear_Click(object sender, RoutedEventArgs e)
         {
             if (isPasswordVisible)
             {
@@ -48,12 +53,12 @@ namespace BankApplication.View.UserControls
             }            
         }
 
-        private void passwordInput_GotFocus(object sender, RoutedEventArgs e)
+        public void passwordInput_GotFocus(object sender, RoutedEventArgs e)
         {
             tbPlaceholder.Visibility = Visibility.Hidden;
         }
 
-        private void show_Password(object sender, RoutedEventArgs e)
+        public void show_Password(object sender, RoutedEventArgs e)
         {
             if (!isPasswordVisible)
             {
@@ -74,7 +79,7 @@ namespace BankApplication.View.UserControls
             isPasswordVisible = !isPasswordVisible; 
         }
 
-        private void passwordInput_LostFocus(object sender, RoutedEventArgs e)
+        public void passwordInput_LostFocus(object sender, RoutedEventArgs e)
         {
             if ((string.IsNullOrEmpty(visiblePasswordInput.Text)) & (string.IsNullOrEmpty(passwordInput.Password)))
                 tbPlaceholder.Visibility = Visibility.Visible;

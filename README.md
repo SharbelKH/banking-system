@@ -2,9 +2,7 @@
 # Banking System
 
 ## Project status
-![workflow](https://github.com/SharbelKH/banking-system/actions/workflows/dotnet.yml/badge.svg)
-
-[![Unit test](https://github.com/SharbelKH/banking-system/actions/workflows/code-coverage.yml/badge.svg)](https://github.com/SharbelKH/banking-system/actions/workflows/code-coverage.yml)
+![workflow](https://github.com/SharbelKH/banking-system/actions/workflows/dotnet.yml/badge.svg) [![Unit test](https://github.com/SharbelKH/banking-system/actions/workflows/code-coverage.yml/badge.svg)](https://github.com/SharbelKH/banking-system/actions/workflows/code-coverage.yml)
 
 ## Project description
 We will design a banking system that manages users and their different bank accounts.
@@ -76,14 +74,14 @@ docker run \
 4. under View -> server expoler you'll find banksystem_database, right click on the database and click on properties.
 5. copy the connection link, important to get the entire link.
 6. naviagte to OurSqlConnectionString.cs and add your personal link.
-7. save and run the projects, to make sure that the connection is working, log in with user ID: 1000 and password: Groda123. You will receive a message saying the log in was successful, this means the connection is working.
+7. save and run the projects, to make sure that the connection is working, log in with Phone Number: 123456789 and password: Groda123. You will receive a message saying the log in was successful, this means the connection is working.
 
  ### code coverage
- 1. Open your C# solution in Visual Studio.
+1. Open your C# solution in Visual Studio.
 2. Ensure your unit tests are running properly.
 3. Go to Test > Analyze Code Coverage > For All Tests.
 4. After the tests complete, the code coverage report will open, showing the percentage of code covered by the tests.
-   NOTE! You can also find code coverage metrics in github actions under 'code-coverage' workflow. Select a specific run to analyse, press 'build and test' and expand 'Run test with code coverage'.
+   NOTE! You can also find code coverage metrics in github actions under 'Code coverage artifact' workflow. Select a specific run to analyse, download 'code-coverage-report zip and extract. The report can be found in 'index.html'.
 
 ## Group members
 - Sherbal Al khouri, SharbelKH

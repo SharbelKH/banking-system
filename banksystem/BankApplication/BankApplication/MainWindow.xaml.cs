@@ -14,6 +14,7 @@ using BankApplication.model;
 using BankApplication.View;
 using BankApplication.myExceptions;
 using BankApplication.Controller;
+using System.Collections.ObjectModel;
 
 namespace BankApplication
 {
@@ -29,6 +30,7 @@ namespace BankApplication
     {
         private Database db;
         private UserController userController;
+        public ObservableCollection<User> UserCollection { get; set; }
 
         public MainWindow(Database db, User user)
         {
@@ -36,14 +38,20 @@ namespace BankApplication
             this.db = db;
             userController = new UserController(db);
             ApplicationUser.LoggedInUser = user;
+            UserCollection = new ObservableCollection<User>
+            {
+               ApplicationUser.LoggedInUser
+            };
+            this.DataContext = this;
+            this.Loaded += MainWindow_Loaded;
         }
 
 
 
         private void Transfer_Click(object sender, RoutedEventArgs e)
         {
-            string transferAmount = TransferAmount.Text;
-            string transferID = TransferID.Text;
+            string transferAmount = TransferAmount.TextString;
+            string transferID = TransferID.TextString;
 
             try
             {
@@ -67,7 +75,7 @@ namespace BankApplication
         private void Deposit_Click(object sender, RoutedEventArgs e)
         {
 
-            string depositAmmount = DepositAmount.Text;
+            string depositAmmount = DepositAmount.TextString;
 
             try
             {
@@ -90,7 +98,7 @@ namespace BankApplication
 
         private void Withdraw_Click(object sender, RoutedEventArgs e)
         {
-            string withdrawAmmount = AmountToWithdraw.Text;
+            string withdrawAmmount = AmountToWithdraw.TextString;
             try
             {
                 bool withdrawBool = userController.WithdrawFunds(withdrawAmmount);
@@ -120,7 +128,7 @@ namespace BankApplication
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // Change the text of the TextBox
-            FirstAndSurname.Text = ApplicationUser.LoggedInUser.Id.ToString();
+            FirstAndSurname.Content = ApplicationUser.LoggedInUser.Id.ToString();
         }
     }
 }
