@@ -130,5 +130,7 @@ namespace BankApplication
             // Change the text of the TextBox
             FirstAndSurname.Content = ApplicationUser.LoggedInUser.Id.ToString();
         }
+
+
     }
 }
