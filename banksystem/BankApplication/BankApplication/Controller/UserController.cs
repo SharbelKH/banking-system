@@ -82,7 +82,7 @@ namespace BankApplication.Controller
         public bool DepositFunds(string amount, string phoneNumber)
         {
             // If input is not valid
-            if (!int.TryParse(amount, out int res) || !ApplicationUser.LoggedInUser.Deposit(int.Parse(amount)))
+            if (!int.TryParse(amount, out int res) || res > 10000)
             {
                 throw new Exception("Deposit not sucessfull!");
             }
@@ -94,7 +94,8 @@ namespace BankApplication.Controller
             if (rowsAffected > 0)
             {
                 // Deposit successful therefore update the class ammount aswell
-                ApplicationUser.LoggedInUser.Balance += int.Parse(amount);
+                //ApplicationUser.LoggedInUser.Balance += int.Parse(amount);
+                ApplicationUser.LoggedInUser.Deposit(int.Parse(amount));
                 return true;
             }
             else
@@ -107,7 +108,7 @@ namespace BankApplication.Controller
         public bool WithdrawFunds(string amount)
         {
             // If input is not valid
-            if (!int.TryParse(amount, out int res) || !ApplicationUser.LoggedInUser.Withdraw(int.Parse(amount)))
+            if (!int.TryParse(amount, out int res))
             {
                 throw new Exception("Withdraw failed!");
             }
@@ -119,7 +120,7 @@ namespace BankApplication.Controller
             if (rowsAffected > 0)
             {
                 // Withdraw successful therefore update the class ammount aswell
-                ApplicationUser.LoggedInUser.Balance -= int.Parse(amount);
+                ApplicationUser.LoggedInUser.Withdraw(int.Parse(amount));
                 return true;
             }
             else
