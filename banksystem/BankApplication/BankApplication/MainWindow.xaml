@@ -82,76 +82,60 @@
                    FontSize="15" FontWeight="Medium" HorizontalAlignment="Center"
                    VerticalAlignment="Top" Margin="0,34,0,0" Grid.RowSpan="2"/>
 
-            <UserControls:TextInputBox x:Name="DepositID" 
-                     Placeholder="Deposit too:"  
-                     Grid.Row="1" Width="250" Height="30" 
-                     HorizontalAlignment="Center" Grid.Column="1" Margin="0,30,0,181"/>
+
 
             <UserControls:TextInputBox x:Name="DepositAmount" 
                      Placeholder="Deposit amount"  
                      Height="30" Width="250" HorizontalAlignment="Center"
-                     Grid.Row="1" Grid.Column="1" Margin="0,65,0,146"/>
+                     Grid.Row="1" Grid.Column="1" Margin="0,31,0,180"/>
 
             <Button x:Name ="Deposit" 
                     Style="{DynamicResource RoundedButton}" Content="Deposit" 
                     Grid.Column="1" Grid.Row="1" Height="30" Width="100" 
                     ToolTip="Deposit money" BorderBrush="DarkGray"
                     Click="Deposit_Click" Foreground="DarkGray" 
-                    HorizontalAlignment="Center" Margin="0,100,0,111"/>
+                    HorizontalAlignment="Center" Margin="0,66,0,145"/>
 
             <Label Content="Transfer" 
                    Grid.Column="1" Background="Transparent"  
                    FontSize="15" Grid.Row="1" VerticalAlignment="Top"
-                   FontWeight="Medium" HorizontalAlignment="Center" 
-                   Margin="0,135,0,0"/>
+                   FontWeight="Medium" HorizontalAlignment="Center" Margin="0,221,0,0" Grid.RowSpan="2"/>
 
             <UserControls:TextInputBox x:Name ="TransferID" 
                      Placeholder="Transfer too:" 
                      Width="250" Grid.Column="1" Height="30" HorizontalAlignment="Center"
-                     Margin="0,165,0,46" Grid.Row="1"/>
+                     Margin="0,15,0,205" Grid.Row="2"/>
 
             <UserControls:TextInputBox x:Name="TransferAmount" 
                      Placeholder="Transfer amount" 
-                     Grid.Column="1" Grid.Row="1" Height="30" Width="250" 
-                     HorizontalAlignment="Center" Margin="0,200,0,11"/>
+                     Grid.Column="1" Grid.Row="2" Height="30" Width="250" 
+                     HorizontalAlignment="Center" Margin="0,50,0,170"/>
 
             <Button x:Name ="Transfer" 
                     Style="{DynamicResource RoundedButton}" Content="Transfer" 
-                    Grid.Column="1" Grid.Row="1" Height="30" Width="100"
+                    Grid.Column="1" Grid.Row="2" Height="30" Width="100"
                     ToolTip="Transfer money" BorderBrush="DarkGray"
                     Click="Transfer_Click" Foreground="DarkGray"
-                    HorizontalAlignment="Center"  
-                    Grid.RowSpan="2" Margin="0,235,0,226"/>
+                    HorizontalAlignment="Center" Margin="0,85,0,135"/>
 
             <Label Content="Withdraw" Grid.Column="1" Background="Transparent" 
-                   FontSize="15" Grid.Row="2"
-                   VerticalAlignment="Top" HorizontalAlignment="Center"
-                   FontWeight="Medium" Margin="0,29,0,0"/>
+                   FontSize="15" Grid.Row="1"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontWeight="Medium"/>
 
-            <UserControls:TextInputBox x:Name="WithdrawFromAccount" 
-                     Placeholder="From account" 
-                     Grid.Column="1" Height="30" Width="250"
-                     HorizontalAlignment="Center" VerticalAlignment="Top"
-                     Grid.Row="2" Margin="0,64,0,0"/>
-
-            <UserControls:TextInputBox x:Name="WithdrawToAccount" 
-                     Placeholder="To account" 
-                     Grid.Column="1" Height="30"
-                     Width="250" HorizontalAlignment="Center" 
-                     Grid.Row="2" Margin="0,99,0,121"/>
 
             <UserControls:TextInputBox x:Name="AmountToWithdraw" 
                      Placeholder="Amount"    
                      Grid.Column="1" Height="30" Width="250" 
-                     Grid.Row="2" Margin="0,134,0,86"
+                     Grid.Row="1" Margin="0,140,0,71"
                      HorizontalAlignment="Center" />
 
             <Button x:Name="Withdraw" 
                     Style="{DynamicResource RoundedButton}" Content="Withdraw" 
-                    Grid.Column="1" Grid.Row="2" Height="30" Width="100"
+                    Grid.Column="1" Grid.Row="1" Height="30" Width="100"
                     ToolTip="Withdraw money" BorderBrush="DarkGray"
                     Click="Withdraw_Click" HorizontalAlignment="Center"
-                    Foreground="DarkGray" VerticalAlignment="Top" Margin="0,169,0,0"/>
+                    Foreground="DarkGray" VerticalAlignment="Top" Margin="0,175,0,0"/>
         </Grid>
     </Border>
 </Window>
