@@ -58,7 +58,7 @@ namespace BankApplication
                 bool transferBool = userController.TransferFunds(transferID, transferAmount);
                 if (transferBool)
                 {
-                    MessageBox.Show("Successfully transfered " + transferAmount + "kr. to: " + transferID);
+                    MessageBox.Show("Successfully transfered " + Int32.Parse(transferAmount) + "kr. to: " + transferID);
                 }
                 else
                 {
@@ -82,7 +82,7 @@ namespace BankApplication
                 bool depositBool = userController.DepositFunds(depositAmmount, ApplicationUser.LoggedInUser.PhoneNumber);
                 if (depositBool)
                 {
-                    MessageBox.Show("Successfully deposited " + depositAmmount + "kr.");
+                    MessageBox.Show("Successfully deposited " + Int32.Parse(depositAmmount) + "kr.");
                 }
                 else
                 {
@@ -104,7 +104,7 @@ namespace BankApplication
                 bool withdrawBool = userController.WithdrawFunds(withdrawAmmount);
                 if (withdrawBool)
                 {
-                    MessageBox.Show("Successfully withdrawn " + withdrawAmmount + "kr.");
+                    MessageBox.Show("Successfully withdrawn " + Int32.Parse(withdrawAmmount) + "kr.");
                 }
                 else
                 {
