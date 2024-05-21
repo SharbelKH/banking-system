@@ -156,10 +156,14 @@ namespace BankApplication.Controller
 
             else
             {
+                // Updates the class Balance for the loggedInUser
+                ApplicationUser.LoggedInUser.Withdraw(int.Parse(amount));
+                // Update database
                 WithdrawFunds(amount);
                 DepositFunds(amount, toAccountNumber);
                 return true;
             }
+                
         }
     }
 }
