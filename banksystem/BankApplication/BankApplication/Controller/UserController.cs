@@ -95,6 +95,11 @@ namespace BankApplication.Controller
             {
                 // Deposit successful therefore update the class ammount aswell
                 ApplicationUser.LoggedInUser.Balance += int.Parse(amount);
+
+                // Insert the transaction into the Transfer database
+                TransactionRecord transaction = new TransactionRecord(phoneNumber, phoneNumber, amount, "Deposit");
+
+                db.ExecuteNonQuery(transaction.Insert_Transaction_Into_TransferDb_String());
                 return true;
             }
             else

@@ -1,5 +1,7 @@
 ﻿using System;
 using BankApplication.myExceptions;
+using Microsoft.Data.SqlClient;
+
 namespace BankApplication.model
 {
 	public class Transaction
@@ -58,8 +60,8 @@ namespace BankApplication.model
                             DateTime timestamp = reader.GetDateTime(3);
 
                             // Create TransactionRecord object and add it to the list
-                            TransactionRecord transaction = new TransactionRecord(fromAccountNumber, toAccountNumber, amount, timestamp);
-                            transactionHistory.Add(transaction);
+                            //TransactionRecord transaction = new TransactionRecord(fromAccountNumber, toAccountNumber, amount, timestamp);
+                            //transactionHistory.Add(transaction);
                         }
                     }
                 }
