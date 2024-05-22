@@ -19,10 +19,10 @@ namespace BankApplication.model
 		public string Address { get; private set; }
         public string Password { get; private set; }
         public int Balance { get; set; }
-
+        public DateTime DateOfBirth { get; private set; }
         //private List<Account> accounts;
 
-        public User(int Id, string name, string phoneNumber, string address, string password, int balance)
+        public User(int Id, string name, string phoneNumber, string address, string password, int balance, DateTime dateOfBirth)
         {
             this.Id = Id;
             this.Name = name;
@@ -30,6 +30,7 @@ namespace BankApplication.model
             this.Address = address;
             this.Password = password;
             this.Balance = balance;
+            this.DateOfBirth = dateOfBirth;
         }
        
         public bool Deposit(int amount)
@@ -64,6 +65,14 @@ namespace BankApplication.model
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public static bool IsUserOldEnough(DateTime dateOfBirth)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - dateOfBirth.Year;
+            if (dateOfBirth.Date > today.AddYears(-age)) age--;
+            return age >= 18;
         }
 
     }

@@ -182,6 +182,8 @@ namespace BankApplicationTest
             // Assert
             mockConnection.Verify(c => c.Close(), Times.Never);
         }
+
+
     }
 
 
@@ -192,7 +194,8 @@ namespace BankApplicationTest
         public void Deposit_less_than_10000()
         {
             // Arrange
-            var user = new User(1, "John", "1234567890", "Address", "password", 1000);
+            var dateOfBirth = DateTime.Today.AddYears(-20); // Example date of birth for a user older than 18
+            var user = new User(1, "John", "1234567890", "Address", "password", 1000, dateOfBirth);
 
             // Act
             var result = user.Deposit(5000);
@@ -206,7 +209,8 @@ namespace BankApplicationTest
         public void Deposit_more_than_10000()
         {
             // Arrange
-            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+            var dateOfBirth = DateTime.Today.AddYears(-20); // Example date of birth for a user older than 18
+            var user = new User(1, "John", "1234567890", "Address", "password", 3000, dateOfBirth);
 
             // Act
             var result = user.Deposit(15000);
@@ -220,7 +224,8 @@ namespace BankApplicationTest
         public void Withdraw_less_than_available_balance()
         {
             // Arrange
-            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+            var dateOfBirth = DateTime.Today.AddYears(-20); // Example date of birth for a user older than 18
+            var user = new User(1, "John", "1234567890", "Address", "password", 3000, dateOfBirth);
 
             // Act
             var result = user.Withdraw(100);
@@ -229,11 +234,13 @@ namespace BankApplicationTest
             Xunit.Assert.True(result);
             Xunit.Assert.Equal(2900, user.Balance);
         }
+
         [Test]
         public void Withdraw_more_than_available_balance()
         {
             // Arrange
-            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+            var dateOfBirth = DateTime.Today.AddYears(-20); // Example date of birth for a user older than 18
+            var user = new User(1, "John", "1234567890", "Address", "password", 3000, dateOfBirth);
 
             // Act
             var result = user.Withdraw(4000);
@@ -241,11 +248,35 @@ namespace BankApplicationTest
             // Assert
             Xunit.Assert.False(result);
             Xunit.Assert.Equal(3000, user.Balance);
-
         }
 
+         [Test]
+        public void IsUserOldEnough_ShouldReturnTrue_ForUsers18OrOlder()
+        {
+            // Arrange
+            var dateOfBirth = DateTime.Today.AddYears(-18);
 
+            // Act
+            bool result = User.IsUserOldEnough(dateOfBirth);
+
+            // Assert
+            Xunit.Assert.True(result);
+        }
+
+        [Test]
+        public void IsUserOldEnough_ShouldReturnFalse_ForUsersYoungerThan18()
+        {
+            // Arrange
+            var dateOfBirth = DateTime.Today.AddYears(-17);
+
+            // Act
+            bool result = User.IsUserOldEnough(dateOfBirth);
+
+            // Assert
+            Xunit.Assert.False(result);
+        }
     }
+
 
     [TestFixture]
     public class ExceptionTests
