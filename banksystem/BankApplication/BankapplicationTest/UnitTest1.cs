@@ -16,6 +16,8 @@ using System.Windows;
 using System.Xaml.Schema;
 using BankApplication;
 using System.Windows.Controls;
+using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.Identity.Client.NativeInterop;
 
 
 namespace BankApplicationTest
@@ -547,6 +549,41 @@ namespace BankApplicationTest
             //Assert
             //Xunit.Assert.Null(connectionString);
             Xunit.Assert.NotEmpty(connectionString);
+        }
+    }
+
+    [TestFixture]
+    public class validatePhonenumberTest
+    {
+        [Test]
+        public void TestPhonenumberValid()
+        {
+            //Arrange
+            var ValidPhoneNumber = new User(1, "John", "1234567890", "Address", "password", 1000);
+
+            //Act 
+            var valid = ValidPhoneNumber.validatePhoneNumber();
+
+            // Assert
+            NUnit.Framework.Assert.That(valid, "The phonenumber is larger than 5 characters");
+           
+
+        }
+    }
+    public class InvalidatePhonenumberTest
+    {
+        [Test]
+        public void TestPhonenumberInvalid()
+        {
+            //Arrange
+            var InvalidPhoneNumber = new User(1, "John", "123", "Address", "password", 1000);
+
+            //Act 
+            var valid = InvalidPhoneNumber.validatePhoneNumber();
+
+            // Assert
+            NUnit.Framework.Assert.That(valid, "The phonenumber is smaller than 5 characters");
+
         }
     }
 }
