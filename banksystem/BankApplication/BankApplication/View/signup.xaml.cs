@@ -26,7 +26,12 @@ namespace BankApplication.View
             {
                 MessageBox.Show("Missing information, please check!");
             }
-
+            else if (phonenumber.TextString.Length < 5)
+            {
+                {
+                    MessageBox.Show("Invalid phonenumber, must be larger than 5 Characters");
+                }
+            }
             else
             {
                 string fullName = fullname.TextString;
