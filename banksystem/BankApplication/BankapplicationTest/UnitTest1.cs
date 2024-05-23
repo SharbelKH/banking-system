@@ -16,6 +16,8 @@ using System.Windows;
 using System.Xaml.Schema;
 using BankApplication;
 using System.Windows.Controls;
+using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.Identity.Client.NativeInterop;
 
 
 namespace BankApplicationTest
@@ -192,7 +194,7 @@ namespace BankApplicationTest
         public void Deposit_less_than_10000()
         {
             // Arrange
-            var user = new User(1, "John", "1234567890", "Address", "password", 1000);
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000);
 
             // Act
             var result = user.Deposit(5000);
@@ -206,7 +208,7 @@ namespace BankApplicationTest
         public void Deposit_more_than_10000()
         {
             // Arrange
-            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000);
 
             // Act
             var result = user.Deposit(15000);
@@ -220,7 +222,7 @@ namespace BankApplicationTest
         public void Withdraw_less_than_available_balance()
         {
             // Arrange
-            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000);
 
             // Act
             var result = user.Withdraw(100);
@@ -233,7 +235,7 @@ namespace BankApplicationTest
         public void Withdraw_more_than_available_balance()
         {
             // Arrange
-            var user = new User(1, "John", "1234567890", "Address", "password", 3000);
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000);
 
             // Act
             var result = user.Withdraw(4000);
@@ -344,7 +346,7 @@ namespace BankApplicationTest
         public void Account_Deposit_AddsToBalance()
         {
             // Arrange
-            Account account = new Account("Savings");
+            BankApplication.model.Account account = new BankApplication.model.Account("Savings");
 
             // Act
             bool result = account.Deposit(100);
@@ -359,7 +361,7 @@ namespace BankApplicationTest
         public void Account_Withdraw_Successful()
         {
             // Arrange
-            Account account = new Account("Checking");
+            BankApplication.model.Account account = new BankApplication.model.Account("Checking");
             account.Deposit(200);
 
             // Act 
@@ -376,7 +378,7 @@ namespace BankApplicationTest
         public void Account_Withdraw_InsufficientFunds()
         {
             // Arrange
-            Account account = new Account("Retirement");
+            BankApplication.model.Account account = new BankApplication.model.Account("Retirement");
             account.Deposit(50);
 
             // Act, result will be false since we cant withdraw 100 from 50
@@ -392,7 +394,7 @@ namespace BankApplicationTest
         public void SavingsAccount_Constructor_SetsAccountType()
         {
             // Arrange & Act
-            Account savingsAccount = AccountFactory.CreateAccount("Savings");
+            BankApplication.model.Account savingsAccount = AccountFactory.CreateAccount("Savings");
 
             bool accountType = "Savings" == savingsAccount.accountType;
 
@@ -404,7 +406,7 @@ namespace BankApplicationTest
         public void CheckingAccount_Constructor_SetsAccountType()
         {
             // Arrange & Act
-            Account checkingAccount = AccountFactory.CreateAccount("Checking");
+            BankApplication.model.Account checkingAccount = AccountFactory.CreateAccount("Checking");
 
             bool accountType = "Checking" == checkingAccount.accountType;
 
@@ -416,7 +418,7 @@ namespace BankApplicationTest
         public void RetirementAccount_Constructor_SetsAccountType()
         {
             // Arrange & Act
-            Account retirementAccount = AccountFactory.CreateAccount("Retirement"); ;
+            BankApplication.model.Account retirementAccount = AccountFactory.CreateAccount("Retirement"); ;
             bool accountType = "Retirement" == retirementAccount.accountType;
 
             // Assert
@@ -547,6 +549,41 @@ namespace BankApplicationTest
             //Assert
             //Xunit.Assert.Null(connectionString);
             Xunit.Assert.NotEmpty(connectionString);
+        }
+    }
+
+    [TestFixture]
+    public class validatePhonenumberTest
+    {
+        [Test]
+        public void TestPhonenumberValid()
+        {
+            //Arrange
+            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000);
+
+            //Act 
+            var valid = ValidPhoneNumber.ValidatePhoneNumber();
+
+            // Assert
+            NUnit.Framework.Assert.That(valid, "The phonenumber is larger than 5 characters");
+           
+
+        }
+    }
+    public class InvalidatePhonenumberTest
+    {
+        [Test]
+        public void TestPhonenumberInvalid()
+        {
+            //Arrange
+            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000);
+
+            //Act 
+            var valid = InvalidPhoneNumber.ValidatePhoneNumber();
+
+            // Assert
+            NUnit.Framework.Assert.That(!valid, "The phonenumber is smaller than 5 characters");
+
         }
     }
 }
