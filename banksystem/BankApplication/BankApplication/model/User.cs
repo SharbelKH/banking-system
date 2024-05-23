@@ -66,7 +66,7 @@ namespace BankApplication.model
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public bool validatePhoneNumber()
+        public bool ValidatePhoneNumber()
         {
             if (PhoneNumber.Length < 5)
                 return false;
