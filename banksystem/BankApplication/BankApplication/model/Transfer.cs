@@ -14,12 +14,12 @@ namespace BankApplication.model
         public DateTime Timestamp { get; }
 
 
-        public Transfer(int fromUserId, int toUserId,string amount)
+        public Transfer(int fromUserId, int toUserId,string amount,DateTime timestamp)
         {
             FromUserId = fromUserId;
             ToUserId = toUserId;
             Amount = amount;
-            Timestamp = DateTime.Now;
+            Timestamp = timestamp;
 
         }
 

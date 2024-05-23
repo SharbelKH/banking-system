@@ -10,12 +10,12 @@ namespace BankApplication.model
         public DateTime Timestamp { get; }
 
 
-        public TransactionRecord(int userId, string amount, string transactionType)
+        public TransactionRecord(int userId, string amount, string transactionType, DateTime datetime)
         {
             UserId = userId;
             Amount = amount;
             TransactionType = transactionType;
-            Timestamp = DateTime.Now;
+            Timestamp = datetime;
 
         }
 

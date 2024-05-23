@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BankApplication.model;
 using User = BankApplication.model.User;
 using BankApplication.myExceptions;
+using System.Collections.ObjectModel;
 
 namespace BankApplication.Controller
 {
@@ -71,30 +72,25 @@ namespace BankApplication.Controller
                 int balance = Convert.ToInt32(row["Balance"]);
 
                 // Query the table Transactions to fetch the users Transactions
-                List<TransactionRecord> transactionRecords = new List<TransactionRecord>();
+                ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
 
                 string transactionQuery = $"SELECT * FROM Transactions WHERE UserId = '{id}'";
                 DataTable transactionData = db.ExecuteQuery(transactionQuery);
                 foreach (DataRow transactionrow in transactionData.Rows)
                 {
                     // Get values from each row
-                    int userId = Convert.ToInt32(row["UserId"]);
-                    string transactionType = row["TransactionType"].ToString();
-                    string _amount = row["Amount"].ToString();
+                    int userId = Convert.ToInt32(transactionrow["UserId"]);
+                    string transactionType = transactionrow["TransactionType"].ToString();
+                    string _amount = transactionrow["Amount"].ToString();
+                    DateTime Timestamp = Convert.ToDateTime(transactionrow["Timestamp"]);
 
                     // Instanciate a TransactionRecord and add it to the userclass
-                    TransactionRecord record = new TransactionRecord(userId,_amount, transactionType);
+                    TransactionRecord record = new TransactionRecord(userId,_amount, transactionType, Timestamp);
                     transactionRecords.Add(record);
                 }
-               
-                string TransactionType = row["TransactionType"]?.ToString() ?? throw new Exception("TransactionType column value is null");
-                string amount = row["Amount"]?.ToString() ?? throw new Exception("Amount column value is null");
-
-
-
 
                 // Create and return a new User object
-                return new User(id, name, phoneNumber, address, password, balance);
+                return new User(id, name, phoneNumber, address, password, balance, transactionRecords);
             }
             else
             {
@@ -119,8 +115,8 @@ namespace BankApplication.Controller
                 // Deposit successful therefore update the class ammount aswell
                 ApplicationUser.LoggedInUser.Deposit(int.Parse(amount));
                 // Insert the transaction into the Transfer database
-                TransactionRecord transaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id, amount, "Deposit");
-
+                TransactionRecord transaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id, amount, "Deposit",DateTime.Now);
+                ApplicationUser.LoggedInUser.addTransaction(transaction);
                 db.ExecuteNonQuery(transaction.Insert_Transaction_Into_TransactionDb_String());
                 return true;
             }
@@ -148,7 +144,8 @@ namespace BankApplication.Controller
                 // Withdraw successful therefore update the class ammount aswell
                 ApplicationUser.LoggedInUser.Withdraw(int.Parse(amount));
                 string PN = ApplicationUser.LoggedInUser.PhoneNumber;
-                TransactionRecord transaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id,amount,"Withdraw");
+                TransactionRecord transaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id,amount,"Withdraw", DateTime.Now);
+                ApplicationUser.LoggedInUser.addTransaction(transaction);
                 db.ExecuteNonQuery(transaction.Insert_Transaction_Into_TransactionDb_String());
                 return true;
             }
@@ -202,13 +199,14 @@ namespace BankApplication.Controller
                 int rowsAffected = db.ExecuteNonQuery(Withdrawquery);
 
                 // Insert the transaction into the Transaction database with 'Transfer'
-                TransactionRecord transferTransaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id, amount, "Transfer");
+                TransactionRecord transferTransaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id, amount, "Transfer", DateTime.Now);
+                ApplicationUser.LoggedInUser.addTransaction(transferTransaction);
 
                 // Insert the transaction into the Transaction database with 'Received'
-                TransactionRecord receivedTransaction = new TransactionRecord(receivingUser.Id, amount, "Received");
+                TransactionRecord receivedTransaction = new TransactionRecord(receivingUser.Id, amount, "Received", DateTime.Now);
 
                 // Insert the Transfer from accounts into table 'Transfers'
-                Transfer transfer = new Transfer(ApplicationUser.LoggedInUser.Id, receivingUser.Id, amount);
+                Transfer transfer = new Transfer(ApplicationUser.LoggedInUser.Id, receivingUser.Id, amount, DateTime.Now);
 
                 // Transaction Table
                 db.ExecuteNonQuery(transferTransaction.Insert_Transaction_Into_TransactionDb_String());

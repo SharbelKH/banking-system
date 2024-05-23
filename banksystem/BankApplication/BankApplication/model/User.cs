@@ -19,12 +19,12 @@ namespace BankApplication.model
 		public string Address { get; private set; }
         public string Password { get; private set; }
         public int Balance { get; set; }
-        private ObservableCollection<TransactionRecord> transactions;
+        public ObservableCollection<TransactionRecord> transactions;
 
 
         //private List<Account> accounts;
 
-        public User(int Id, string name, string phoneNumber, string address, string password, int balance)
+        public User(int Id, string name, string phoneNumber, string address, string password, int balance, ObservableCollection<TransactionRecord> transactionList)
         {
             this.Id = Id;
             this.Name = name;
@@ -32,9 +32,11 @@ namespace BankApplication.model
             this.Address = address;
             this.Password = password;
             this.Balance = balance;
-            transactions = new ObservableCollection<TransactionRecord>();
+
+            transactions = transactionList;//new ObservableCollection<TransactionRecord>();
+            OnPropertyChanged(nameof(transactions));
         }
-       
+
         public bool Deposit(int amount)
         {
             if (amount <= 10000)
@@ -61,6 +63,12 @@ namespace BankApplication.model
             {
                 return false;
             }
+        }
+
+        public void addTransaction(TransactionRecord transaction)
+        {
+            transactions.Add(transaction);
+            OnPropertyChanged(nameof(transactions));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

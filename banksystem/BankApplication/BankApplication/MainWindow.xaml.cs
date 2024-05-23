@@ -31,6 +31,7 @@ namespace BankApplication
         private Database db;
         private UserController userController;
         public ObservableCollection<User> UserCollection { get; set; }
+        public ObservableCollection<TransactionRecord> transactions;
 
         public MainWindow(Database db, User user)
         {
@@ -42,6 +43,7 @@ namespace BankApplication
             {
                ApplicationUser.LoggedInUser
             };
+            transactions = ApplicationUser.LoggedInUser.transactions;
             this.DataContext = this;
             this.Loaded += MainWindow_Loaded;
         }
@@ -83,6 +85,11 @@ namespace BankApplication
                 if (depositBool)
                 {
                     MessageBox.Show("Successfully deposited " + Int32.Parse(depositAmmount) + "kr.");
+
+                    foreach (TransactionRecord TR in ApplicationUser.LoggedInUser.transactions)
+                    {
+                        MessageBox.Show(TR.Insert_Transaction_Into_TransactionDb_String());
+                    }
                 }
                 else
                 {
