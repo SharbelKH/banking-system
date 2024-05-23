@@ -1,9 +1,11 @@
 ﻿using Microsoft.Identity.Client.NativeInterop;
 using System;
+using System.ComponentModel;
+
 namespace BankApplication.model
 {
-	public class TransactionRecord
-	{
+    public class TransactionRecord
+    {
         public int UserId { get; }
         public string TransactionType { get; }
         public string Amount { get; }

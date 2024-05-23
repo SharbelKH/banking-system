@@ -59,7 +59,7 @@
             <ListBox Name ="TransactionListBox" Grid.Row="2" HorizontalAlignment="Center"
                      VerticalAlignment="Center" Height="180" Width="240" 
                      BorderBrush="LightGray"
-                     ItemsSource="{Binding transactions}">
+                     ItemsSource="{Binding Transactions}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
