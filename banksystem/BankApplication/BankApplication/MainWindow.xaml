@@ -103,7 +103,7 @@
                    FontWeight="Medium" HorizontalAlignment="Center" Margin="0,221,0,0" Grid.RowSpan="2"/>
 
             <UserControls:TextInputBox x:Name ="TransferID" 
-                     Placeholder="Transfer too:" 
+                     Placeholder="Transfer to:" 
                      Width="250" Grid.Column="1" Height="30" HorizontalAlignment="Center"
                      Margin="0,15,0,205" Grid.Row="2"/>
 
