@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-
+using System.Collections.ObjectModel;
 
 namespace BankApplication.model
 {
@@ -19,6 +19,8 @@ namespace BankApplication.model
 		public string Address { get; private set; }
         public string Password { get; private set; }
         public int Balance { get; set; }
+        private ObservableCollection<TransactionRecord> transactions;
+
 
         //private List<Account> accounts;
 
@@ -30,6 +32,7 @@ namespace BankApplication.model
             this.Address = address;
             this.Password = password;
             this.Balance = balance;
+            transactions = new ObservableCollection<TransactionRecord>();
         }
        
         public bool Deposit(int amount)

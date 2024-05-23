@@ -4,29 +4,27 @@ namespace BankApplication.model
 {
 	public class TransactionRecord
 	{
-        public string FromAccountNumber { get; }
-        public string ToAccountNumber { get; }
+        public int UserId { get; }
+        public string TransactionType { get; }
         public string Amount { get; }
         public DateTime Timestamp { get; }
-        public string TransactionType { get; }
 
 
-        public TransactionRecord(string fromAccountNumber, string toAccountNumber, string amount, string transactionType)
+        public TransactionRecord(int userId, string amount, string transactionType)
         {
-            FromAccountNumber = fromAccountNumber;
-            ToAccountNumber = toAccountNumber;
+            UserId = userId;
             Amount = amount;
             TransactionType = transactionType;
             Timestamp = DateTime.Now;
 
         }
 
-        public string Insert_Transaction_Into_TransferDb_String()
+        public string Insert_Transaction_Into_TransactionDb_String()
         {
             string formattedDate = Timestamp.ToString("yyyy-MM-dd HH:mm:ss");
-            string insertQueryintoTransfer = $"INSERT INTO Transfer (FromAccountNumber, ToAccountNumber, Amount, Timestamp, TypeOfTransfer) VALUES ('{FromAccountNumber}', '{ToAccountNumber}', '{Amount}', '{formattedDate}', {TransactionType})";
+            string insertQueryintoTransaction = $"INSERT INTO Transactions (UserId, TransactionType, Amount, TimeStamp) VALUES ('{UserId}', '{TransactionType}', '{Amount}', '{formattedDate}')";
 
-            return insertQueryintoTransfer;
+            return insertQueryintoTransaction;
         }
     }
 }
