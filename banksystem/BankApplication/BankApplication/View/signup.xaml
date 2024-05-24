@@ -38,7 +38,7 @@
                                      Foreground="Black" 
                                      Margin="50,0,0,0" VerticalAlignment="Center"/>
 
-            <UserControls:PasswordInputBox x:Name="passwordinput" Grid.Row="2" Width="250" Height="30" 
+            <UserControls:PasswordInputBox x:Name="passwordinput" Grid.Row="2" Width="250" Height="30" ToolTip="No support for åäö"
                                            Placeholder="Password" HorizontalAlignment="Center"/>
 
             <materialDesign:PackIcon Kind="Lock" Height="30" Width="30" Grid.Row="2" Margin="50,0,0,0" 
