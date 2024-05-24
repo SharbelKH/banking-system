@@ -567,8 +567,9 @@ namespace BankApplicationTest
         [Test]
         public void TestPhonenumberValid()
         {
+            ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             //Arrange
-            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000);
+            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000, transactionRecords);
 
             //Act 
             var valid = ValidPhoneNumber.ValidatePhoneNumber();
@@ -584,8 +585,9 @@ namespace BankApplicationTest
         [Test]
         public void TestPhonenumberInvalid()
         {
+            ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             //Arrange
-            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000);
+            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000, transactionRecords);
 
             //Act 
             var valid = InvalidPhoneNumber.ValidatePhoneNumber();
