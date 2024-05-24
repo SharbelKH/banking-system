@@ -54,7 +54,7 @@ namespace BankApplication.View
                 }
                 else
                 {
-                    MessageBox.Show("Failed to create user. Please try again.");
+                    MessageBox.Show("Failed to create user. Phonenumber already in use! Please try again.");
                 }
             }
         }

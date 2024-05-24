@@ -102,12 +102,17 @@ namespace BankApplication.Controller
         public bool DepositFunds(string amount, string phoneNumber)
         {
             // If input is not valid
-            if (!int.TryParse(amount, out int res) || res > 10000)
+            if (!int.TryParse(amount, out int res))
             {
                 throw new Exception("Deposit not sucessfull!");
             }
+            if (res > 10000)
+            {
+                throw new Exception("Cannot deposit more than 10 000kr!");
 
-          
+            }
+
+
             string query = $"UPDATE Account SET Balance = Balance + {amount} WHERE PhoneNumber = {phoneNumber}";
             int rowsAffected = db.ExecuteNonQuery(query);
 
@@ -132,9 +137,14 @@ namespace BankApplication.Controller
         public bool WithdrawFunds(string amount)
         {
             // If input is not valid
-            if (!int.TryParse(amount, out int res))
+            if (!int.TryParse(amount, out int res) )
             {
                 throw new Exception("Withdraw failed!");
+            }
+            if (int.Parse(amount )> ApplicationUser.LoggedInUser.Balance)
+            {
+                throw new insufficientFunds();
+
             }
 
             // Updating the Account Table with Balance
