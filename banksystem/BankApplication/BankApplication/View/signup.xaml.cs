@@ -19,7 +19,7 @@ namespace BankApplication.View
             InitializeComponent();
             this.userController = userController;
         }
-
+        // Validate the users input before creating a user
         private void btn_CreateUser_Click(object sender, RoutedEventArgs e)
         {
             if (fullname.TextString == "" || phonenumber.TextString == "" || adress.TextString == "" || passwordinput.passwordString == "")
@@ -39,15 +39,14 @@ namespace BankApplication.View
                 string address = adress.TextString;
                 string password = passwordinput.passwordString;
 
-                // Assuming you have access to the userController instance
-                // and it's properly initialized, you can use it here
+                // Method to create the user and put the new user into the database
                 bool userCreated = userController.CreateUser(fullName, phoneNumber, address, password);
 
+                // If sucessfull then validate the user via UI, otherwise tell user something went wrong 
                 if (userCreated)
                 {
                     MessageBox.Show("User created successfully!");
-                    
-                    // Optionally, you might want to open the login window again
+                    // Sucessfully created user, send them back to login screen
                     Login loginWindow = new Login();
                     loginWindow.Show();
                     // Close the signup window

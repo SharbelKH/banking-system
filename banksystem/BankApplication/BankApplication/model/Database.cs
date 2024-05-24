@@ -49,8 +49,6 @@ namespace BankApplication.model
                 object? result = command.ExecuteScalar();
                 if (result == null)
                 {
-                    // Handle the case where ExecuteScalar returns null
-                    // For example, you can return a default value or throw an exception
                     throw new InvalidOperationException("ExecuteScalar returned null.");
                 }
 

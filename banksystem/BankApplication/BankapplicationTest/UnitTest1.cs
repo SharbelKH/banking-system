@@ -16,9 +16,10 @@ using System.Windows;
 using System.Xaml.Schema;
 using BankApplication;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
+
 using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.Identity.Client.NativeInterop;
-
 
 namespace BankApplicationTest
 {
@@ -193,8 +194,10 @@ namespace BankApplicationTest
         [Test]
         public void Deposit_less_than_10000()
         {
+            ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             // Arrange
-            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000);
+
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000,transactionRecords);
 
             // Act
             var result = user.Deposit(5000);
@@ -207,8 +210,10 @@ namespace BankApplicationTest
         [Test]
         public void Deposit_more_than_10000()
         {
+            ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
+
             // Arrange
-            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000);
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords);
 
             // Act
             var result = user.Deposit(15000);
@@ -221,8 +226,10 @@ namespace BankApplicationTest
         [Test]
         public void Withdraw_less_than_available_balance()
         {
+            ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
+
             // Arrange
-            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000);
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords);
 
             // Act
             var result = user.Withdraw(100);
@@ -234,8 +241,10 @@ namespace BankApplicationTest
         [Test]
         public void Withdraw_more_than_available_balance()
         {
+            ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
+
             // Arrange
-            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000);
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords);
 
             // Act
             var result = user.Withdraw(4000);
@@ -558,8 +567,9 @@ namespace BankApplicationTest
         [Test]
         public void TestPhonenumberValid()
         {
+            ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             //Arrange
-            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000);
+            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000, transactionRecords);
 
             //Act 
             var valid = ValidPhoneNumber.ValidatePhoneNumber();
@@ -575,8 +585,9 @@ namespace BankApplicationTest
         [Test]
         public void TestPhonenumberInvalid()
         {
+            ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             //Arrange
-            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000);
+            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000, transactionRecords);
 
             //Act 
             var valid = InvalidPhoneNumber.ValidatePhoneNumber();
