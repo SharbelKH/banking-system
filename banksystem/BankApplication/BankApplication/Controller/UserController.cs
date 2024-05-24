@@ -52,6 +52,7 @@ namespace BankApplication.Controller
             return rowsAffected > 0;
         }
 
+        // Fetch user from the database and return the datatype User
         public User getUser(string phoneNumber)
         {
             // Query the database to get user information based on the phoneNumber from table Account
@@ -80,8 +81,8 @@ namespace BankApplication.Controller
                 {
                     // Get values from each row
                     int userId = Convert.ToInt32(transactionrow["UserId"]);
-                    string transactionType = transactionrow["TransactionType"].ToString();
-                    string _amount = transactionrow["Amount"].ToString();
+                    string transactionType = transactionrow["TransactionType"].ToString() ?? throw new Exception("transactionType column value is null");
+                    string _amount = transactionrow["Amount"].ToString() ?? throw new Exception("Amount column value is null");
                     DateTime Timestamp = Convert.ToDateTime(transactionrow["Timestamp"]);
 
                     // Instanciate a TransactionRecord and add it to the userclass
@@ -116,6 +117,7 @@ namespace BankApplication.Controller
                 ApplicationUser.LoggedInUser.Deposit(int.Parse(amount));
                 // Insert the transaction into the Transfer database
                 TransactionRecord transaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id, amount, "Deposit",DateTime.Now);
+                // Update the users transactions
                 ApplicationUser.LoggedInUser.addTransaction(transaction);
                 db.ExecuteNonQuery(transaction.Insert_Transaction_Into_TransactionDb_String());
                 return true;
@@ -143,9 +145,10 @@ namespace BankApplication.Controller
             {
                 // Withdraw successful therefore update the class ammount aswell
                 ApplicationUser.LoggedInUser.Withdraw(int.Parse(amount));
-                string PN = ApplicationUser.LoggedInUser.PhoneNumber;
+                // Instanciate a new transaction and add it to the class user
                 TransactionRecord transaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id,amount,"Withdraw", DateTime.Now);
                 ApplicationUser.LoggedInUser.addTransaction(transaction);
+                // Update the databasetable 'Transaction' with the new transaction
                 db.ExecuteNonQuery(transaction.Insert_Transaction_Into_TransactionDb_String());
                 return true;
             }
@@ -165,6 +168,7 @@ namespace BankApplication.Controller
             return count > 0;
         }
 
+        // Makes a Transfer, updates both the database and the LoggedInUser
         public bool TransferFunds(string toAccountNumber, string amount)
         {
             // If the recieving acount is not in database
@@ -184,7 +188,6 @@ namespace BankApplication.Controller
             {
                 // Get the receiving user from the database:
                 User receivingUser = getUser(toAccountNumber);
-                User sendingUser = getUser(ApplicationUser.LoggedInUser.PhoneNumber);
 
                 // Updates the class Balance for the loggedInUser
                 ApplicationUser.LoggedInUser.Withdraw(int.Parse(amount));
@@ -196,7 +199,7 @@ namespace BankApplication.Controller
 
                 // Withdrawquery
                 string Withdrawquery = $"UPDATE Account SET Balance = Balance - {amount} WHERE Id = {ApplicationUser.LoggedInUser.Id}";
-                int rowsAffected = db.ExecuteNonQuery(Withdrawquery);
+                db.ExecuteNonQuery(Withdrawquery);
 
                 // Insert the transaction into the Transaction database with 'Transfer'
                 TransactionRecord transferTransaction = new TransactionRecord(ApplicationUser.LoggedInUser.Id, amount, "Transfer", DateTime.Now);

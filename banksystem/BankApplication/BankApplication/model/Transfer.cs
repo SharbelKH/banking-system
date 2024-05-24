@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace BankApplication.model
 {
+    // Class that stores data of a transfer-transaction
+    // Data is From-/toUser, amount and time
     class Transfer
     {
         public int FromUserId { get; }

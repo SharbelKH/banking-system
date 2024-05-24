@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 namespace BankApplication.model
 {
+    // This class will store data about a specific Transaction, storing data about which user, amount,time and type of transaction
     public class TransactionRecord
     {
         public int UserId { get; }
