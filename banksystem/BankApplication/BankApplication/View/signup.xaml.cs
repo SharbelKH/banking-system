@@ -66,5 +66,12 @@ namespace BankApplication.View
                 MessageBox.Show("Users have to be at least 18 years old to sign up!");
             }
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Login loginWindow = new Login();
+            loginWindow.Show();
+            this.Close();
+        }
     }
 }
