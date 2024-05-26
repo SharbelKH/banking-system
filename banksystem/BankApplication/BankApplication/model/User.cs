@@ -21,6 +21,9 @@ namespace BankApplication.model
 		public string Address { get; private set; }
         public string Password { get; private set; }
         public int Balance { get; set; }
+        public DateTime DateOfBirth { get; private set; }
+        //private List<Account> accounts;
+
         public ObservableCollection<TransactionRecord> _transactions;
         public ObservableCollection<TransactionRecord> Transactions
         {
@@ -38,7 +41,7 @@ namespace BankApplication.model
 
         //private List<Account> accounts;
 
-        public User(int Id, string name, string phoneNumber, string address, string password, int balance, ObservableCollection<TransactionRecord> transactionList)
+        public User(int Id, string name, string phoneNumber, string address, string password, int balance, ObservableCollection<TransactionRecord> transactionList,DateTime dateOfBirth)
         {
             this.Id = Id;
             this.Name = name;
@@ -46,7 +49,7 @@ namespace BankApplication.model
             this.Address = address;
             this.Password = password;
             this.Balance = balance;
-
+            this.DateOfBirth = dateOfBirth;
             _transactions = transactionList;
         }
 
@@ -94,6 +97,16 @@ namespace BankApplication.model
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
+        public static bool IsUserOldEnough(DateTime dateOfBirth)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - dateOfBirth.Year;
+            if (dateOfBirth.Date > today.AddYears(-age)) age--;
+            return age >= 18;
+        }
+
+
         // Feature to validate the users PhoneNumber
         public bool ValidatePhoneNumber()
         {
@@ -102,5 +115,6 @@ namespace BankApplication.model
             else
                 return true; 
         }
+
     }
 }

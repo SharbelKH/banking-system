@@ -185,6 +185,8 @@ namespace BankApplicationTest
             // Assert
             mockConnection.Verify(c => c.Close(), Times.Never);
         }
+
+
     }
 
 
@@ -196,8 +198,8 @@ namespace BankApplicationTest
         {
             ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             // Arrange
-
-            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000,transactionRecords);
+            var dateOfBirth = DateTime.Today.AddYears(-20); // Example date of birth for a user older than 18
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000,transactionRecords, dateOfBirth);
 
             // Act
             var result = user.Deposit(5000);
@@ -213,7 +215,8 @@ namespace BankApplicationTest
             ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
 
             // Arrange
-            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords);
+            var dateOfBirth = DateTime.Today.AddYears(-20); // Example date of birth for a user older than 18
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords, dateOfBirth);
 
             // Act
             var result = user.Deposit(15000);
@@ -229,7 +232,8 @@ namespace BankApplicationTest
             ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
 
             // Arrange
-            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords);
+            var dateOfBirth = DateTime.Today.AddYears(-20); // Example date of birth for a user older than 18
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords, dateOfBirth);
 
             // Act
             var result = user.Withdraw(100);
@@ -238,13 +242,16 @@ namespace BankApplicationTest
             Xunit.Assert.True(result);
             Xunit.Assert.Equal(2900, user.Balance);
         }
+
         [Test]
         public void Withdraw_more_than_available_balance()
         {
             ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
 
             // Arrange
-            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords);
+
+            var dateOfBirth = DateTime.Today.AddYears(-20); // Example date of birth for a user older than 18
+            var user = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 3000,transactionRecords, dateOfBirth);
 
             // Act
             var result = user.Withdraw(4000);
@@ -252,11 +259,35 @@ namespace BankApplicationTest
             // Assert
             Xunit.Assert.False(result);
             Xunit.Assert.Equal(3000, user.Balance);
-
         }
 
+         [Test]
+        public void IsUserOldEnough_ShouldReturnTrue_ForUsers18OrOlder()
+        {
+            // Arrange
+            var dateOfBirth = DateTime.Today.AddYears(-18);
 
+            // Act
+            bool result = BankApplication.model.User.IsUserOldEnough(dateOfBirth);
+
+            // Assert
+            Xunit.Assert.True(result);
+        }
+
+        [Test]
+        public void IsUserOldEnough_ShouldReturnFalse_ForUsersYoungerThan18()
+        {
+            // Arrange
+            var dateOfBirth = DateTime.Today.AddYears(-17);
+
+            // Act
+            bool result = BankApplication.model.User.IsUserOldEnough(dateOfBirth);
+
+            // Assert
+            Xunit.Assert.False(result);
+        }
     }
+
 
     [TestFixture]
     public class ExceptionTests
@@ -569,7 +600,8 @@ namespace BankApplicationTest
         {
             ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             //Arrange
-            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000, transactionRecords);
+            var dateOfBirth = DateTime.Today.AddYears(-20);
+            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000, transactionRecords, dateOfBirth);
 
             //Act 
             var valid = ValidPhoneNumber.ValidatePhoneNumber();
@@ -587,7 +619,8 @@ namespace BankApplicationTest
         {
             ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             //Arrange
-            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000, transactionRecords);
+            var dateOfBirth = DateTime.Today.AddYears(-20);
+            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000, transactionRecords, dateOfBirth);
 
             //Act 
             var valid = InvalidPhoneNumber.ValidatePhoneNumber();

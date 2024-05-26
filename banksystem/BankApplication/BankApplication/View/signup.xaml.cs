@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using Microsoft.Data.SqlClient;
 using BankApplication;
 using BankApplication.Controller;
+using BankApplication.model;
 
 namespace BankApplication.View
 {
@@ -22,7 +23,8 @@ namespace BankApplication.View
         // Validate the users input before creating a user
         private void btn_CreateUser_Click(object sender, RoutedEventArgs e)
         {
-            if (fullname.TextString == "" || phonenumber.TextString == "" || adress.TextString == "" || passwordinput.passwordString == "")
+            if (fullname.TextString == "" || phonenumber.TextString == "" || adress.TextString == "" || passwordinput.passwordString == "" 
+                || Age_DOB.SelectedDate == null || Age_DOB.SelectedDate.Value == DateTime.MinValue)
             {
                 MessageBox.Show("Missing information, please check!");
             }
@@ -31,16 +33,18 @@ namespace BankApplication.View
                 {
                     MessageBox.Show("Invalid phonenumber, must be larger than 5 Characters");
                 }
-            }
-            else
+            } 
+            
+            else if (User.IsUserOldEnough(Age_DOB.SelectedDate.Value))
             {
                 string fullName = fullname.TextString;
                 string phoneNumber = phonenumber.TextString;
                 string address = adress.TextString;
                 string password = passwordinput.passwordString;
+                DateTime dateOfBirth = Age_DOB.SelectedDate.Value;
 
                 // Method to create the user and put the new user into the database
-                bool userCreated = userController.CreateUser(fullName, phoneNumber, address, password);
+                bool userCreated = userController.CreateUser(fullName, phoneNumber, address, password, dateOfBirth);
 
                 // If sucessfull then validate the user via UI, otherwise tell user something went wrong 
                 if (userCreated)
@@ -57,7 +61,10 @@ namespace BankApplication.View
                     MessageBox.Show("Failed to create user. Phonenumber already in use! Please try again.");
                 }
             }
+            else
+            {
+                MessageBox.Show("Users have to be at least 18 years old to sign up!");
+            }
         }
-
     }
 }

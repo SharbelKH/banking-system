@@ -31,7 +31,7 @@ namespace BankApplication.Controller
             return count > 0;
         }
 
-        public bool CreateUser(string fullName, string phoneNumber, string address, string password)
+        public bool CreateUser(string fullName, string phoneNumber, string address, string password, DateTime dateOfBirth)
         {
             // Check if the user already exists (optional, depending on your requirements)
             string checkQuery = $"SELECT COUNT(*) FROM Account WHERE PhoneNumber = '{phoneNumber}'";
@@ -43,11 +43,11 @@ namespace BankApplication.Controller
             }
 
             // If the user does not exist, insert the new user into the database
-            string insertQuery = $"INSERT INTO Account (Name, PhoneNumber, Address, Password, Balance) " +
-                                 $"VALUES ('{fullName}', '{phoneNumber}', '{address}', '{password}', '{0}')";
+            string insertQuery = $"INSERT INTO Account (Name, PhoneNumber, Address, Password, Balance, DateOfBirth) " +
+                                 $"VALUES ('{fullName}', '{phoneNumber}', '{address}', '{password}', '{0}', '{dateOfBirth.ToString("yyyy-MM-dd")}')";
 
             int rowsAffected = db.ExecuteNonQuery(insertQuery);
-
+            
             // Check if the user was successfully inserted
             return rowsAffected > 0;
         }
@@ -71,6 +71,7 @@ namespace BankApplication.Controller
                 string password = row["Password"]?.ToString() ?? throw new Exception("Name column value is null");
 
                 int balance = Convert.ToInt32(row["Balance"]);
+                DateTime dateOfBirth = row["DateOfBirth"] != DBNull.Value ? Convert.ToDateTime(row["DateOfBirth"]) : throw new Exception("DateOfBirth column value is null");
 
                 // Query the table Transactions to fetch the users Transactions
                 ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
@@ -91,7 +92,9 @@ namespace BankApplication.Controller
                 }
 
                 // Create and return a new User object
-                return new User(id, name, phoneNumber, address, password, balance, transactionRecords);
+
+                return new User(id, name, phoneNumber, address, password, balance, transactionRecords, dateOfBirth);
+
             }
             else
             {
