@@ -32,24 +32,24 @@
                    VerticalAlignment="Top" FontWeight="Medium"
                    BorderBrush="Transparent" Grid.Row="1" Height="30" Width="116"/>
 
-            <ListBox Name ="AccountListBox" 
+            <ListBox Name="AccountListBox" 
                      HorizontalAlignment="Center" VerticalAlignment="Center" 
                      Height="180" Width="240" Grid.Row="1" 
                      BorderBrush="LightGray"
                      ItemsSource="{Binding UserCollection}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Id}" Margin ="5"/>
-                            <TextBlock Text="{Binding Balance}" Margin  ="5"/>
-                            <TextBlock Text="{Binding Name}" Margin ="5"/>
-                            <TextBlock Text="{Binding Address}" Margin ="5"/>
-                            <TextBlock Text="{Binding PhoneNumber}" Margin ="5"/>
-
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Id, StringFormat='Id: {0}'}" Margin="5"/>
+                            <TextBlock Text="{Binding Balance, StringFormat='Balance: {0} kr'}" Margin="5"/>
+                            <TextBlock Text="{Binding Name, StringFormat='Name: {0}'}" Margin="5"/>
+                            <TextBlock Text="{Binding Address, StringFormat='Address: {0}'}" Margin="5"/>
+                            <TextBlock Text="{Binding PhoneNumber, StringFormat='Phone Number: {0}'}" Margin="5"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
 
             <Label Content="Transaction History" Background="Transparent" 
                    FontSize="15" Grid.Row="2" VerticalAlignment="Top" 
@@ -58,13 +58,14 @@
 
             <ListBox Name ="TransactionListBox" Grid.Row="2" HorizontalAlignment="Center"
                      VerticalAlignment="Center" Height="180" Width="240" 
-                     BorderBrush="LightGray">
+                     BorderBrush="LightGray"
+                     ItemsSource="{Binding Transactions}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding TransactionDate}" Margin="5"/>
-                            <TextBlock Text="{Binding AccountID}" Margin="5"/>
+                            <TextBlock Text="{Binding TransactionType}" Margin="5"/>
                             <TextBlock Text="{Binding Amount}" Margin="5"/>
+                            <TextBlock Text="{Binding Timestamp}" Margin="5"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -102,7 +103,7 @@
                    FontWeight="Medium" HorizontalAlignment="Center" Margin="0,221,0,0" Grid.RowSpan="2"/>
 
             <UserControls:TextInputBox x:Name ="TransferID" 
-                     Placeholder="Transfer too:" 
+                     Placeholder="Transfer to:" 
                      Width="250" Grid.Column="1" Height="30" HorizontalAlignment="Center"
                      Margin="0,15,0,205" Grid.Row="2"/>
 
