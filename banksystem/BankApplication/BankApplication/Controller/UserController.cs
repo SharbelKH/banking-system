@@ -101,12 +101,17 @@ namespace BankApplication.Controller
         }
         public bool DepositFunds(string amount, string phoneNumber)
         {
+            // Check if amount is positive
+            if (int.Parse(amount) <= 0)
+            {
+                throw new negativeValueTransaction();
+            }
             // If input is not valid
-            if (!int.TryParse(amount, out int res))
+            else if (!int.TryParse(amount, out int res))
             {
                 throw new Exception("Deposit not sucessfull!");
             }
-            if (res > 10000)
+            if (int.Parse(amount) > 10000)
             {
                 throw new Exception("Cannot deposit more than 10 000kr!");
 
@@ -136,12 +141,17 @@ namespace BankApplication.Controller
 
         public bool WithdrawFunds(string amount)
         {
+            // Check if amount is positive
+            if (int.Parse(amount) <= 0)
+            {
+                throw new negativeValueTransaction();
+            }
             // If input is not valid
-            if (!int.TryParse(amount, out int res) )
+            else if (!int.TryParse(amount, out int res) )
             {
                 throw new Exception("Withdraw failed!");
             }
-            if (int.Parse(amount )> ApplicationUser.LoggedInUser.Balance)
+            if (int.Parse(amount) > ApplicationUser.LoggedInUser.Balance)
             {
                 throw new insufficientFunds();
 
@@ -181,8 +191,14 @@ namespace BankApplication.Controller
         // Makes a Transfer, updates both the database and the LoggedInUser
         public bool TransferFunds(string toAccountNumber, string amount)
         {
+            // Check if amount is positive
+            if (int.Parse(amount) <= 0)
+            {
+                throw new negativeValueTransaction();
+            }
+
             // If the recieving acount is not in database
-            if (!IsInDatabase(toAccountNumber))
+            else if (!IsInDatabase(toAccountNumber))
             {
                 invalid_source invalid_Source = new invalid_source();
                 throw invalid_Source;
