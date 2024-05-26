@@ -43,11 +43,11 @@ namespace BankApplication.Controller
             }
 
             // If the user does not exist, insert the new user into the database
-            string insertQuery = $"INSERT INTO Account (Name, PhoneNumber, Address, Password, Balance) " +
+            string insertQuery = $"INSERT INTO Account (Name, PhoneNumber, Address, Password, Balance, DateOfBirth) " +
                                  $"VALUES ('{fullName}', '{phoneNumber}', '{address}', '{password}', '{0}', '{dateOfBirth.ToString("yyyy-MM-dd")}')";
 
             int rowsAffected = db.ExecuteNonQuery(insertQuery);
-
+            
             // Check if the user was successfully inserted
             return rowsAffected > 0;
         }
