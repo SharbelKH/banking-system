@@ -38,9 +38,10 @@ namespace BankApplication.View
                 string phoneNumber = phonenumber.TextString;
                 string address = adress.TextString;
                 string password = passwordinput.passwordString;
+                DateTime dateOfBirth = Age_DOB.SelectedDate.Value;
 
                 // Method to create the user and put the new user into the database
-                bool userCreated = userController.CreateUser(fullName, phoneNumber, address, password);
+                bool userCreated = userController.CreateUser(fullName, phoneNumber, address, password, dateOfBirth);
 
                 // If sucessfull then validate the user via UI, otherwise tell user something went wrong 
                 if (userCreated)
