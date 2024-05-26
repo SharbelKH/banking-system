@@ -17,4 +17,8 @@ namespace BankApplication.myExceptions
     {
         public insufficientFunds() : base("Insufficient funds") { }
     }
+    public class negativeValueTransaction : Exception
+    {
+        public negativeValueTransaction() : base("Cannot make transaction with less than 0kr") { }
+    }
 }
