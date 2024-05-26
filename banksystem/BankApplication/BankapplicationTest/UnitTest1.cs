@@ -268,7 +268,7 @@ namespace BankApplicationTest
             var dateOfBirth = DateTime.Today.AddYears(-18);
 
             // Act
-            bool result = User.IsUserOldEnough(dateOfBirth);
+            bool result = BankApplication.model.User.IsUserOldEnough(dateOfBirth);
 
             // Assert
             Xunit.Assert.True(result);
@@ -281,7 +281,7 @@ namespace BankApplicationTest
             var dateOfBirth = DateTime.Today.AddYears(-17);
 
             // Act
-            bool result = User.IsUserOldEnough(dateOfBirth);
+            bool result = BankApplication.model.User.IsUserOldEnough(dateOfBirth);
 
             // Assert
             Xunit.Assert.False(result);
@@ -600,7 +600,8 @@ namespace BankApplicationTest
         {
             ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             //Arrange
-            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000, transactionRecords);
+            var dateOfBirth = DateTime.Today.AddYears(-20);
+            var ValidPhoneNumber = new BankApplication.model.User(1, "John", "1234567890", "Address", "password", 1000, transactionRecords, dateOfBirth);
 
             //Act 
             var valid = ValidPhoneNumber.ValidatePhoneNumber();
@@ -618,7 +619,8 @@ namespace BankApplicationTest
         {
             ObservableCollection<TransactionRecord> transactionRecords = new ObservableCollection<TransactionRecord>();
             //Arrange
-            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000, transactionRecords);
+            var dateOfBirth = DateTime.Today.AddYears(-20);
+            var InvalidPhoneNumber = new BankApplication.model.User(1, "John", "123", "Address", "password", 1000, transactionRecords, dateOfBirth);
 
             //Act 
             var valid = InvalidPhoneNumber.ValidatePhoneNumber();
