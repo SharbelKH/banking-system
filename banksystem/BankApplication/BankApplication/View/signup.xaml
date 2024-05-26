@@ -63,7 +63,7 @@
                     BorderBrush="DarkGray" Foreground="DarkGray"/>
 
             <DatePicker x:Name="Age_DOB" HorizontalAlignment="Center" Grid.Row="5" 
-                        VerticalAlignment="Center" Text="Date of birth"/>
+                        VerticalAlignment="Center" Text="Date of birth" ToolTip="Select your date of birth"/>
 
         </Grid>
     </Border>
