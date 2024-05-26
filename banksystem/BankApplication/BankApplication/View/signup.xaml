@@ -10,7 +10,7 @@
         Title="Sign Up" Height="550" Width="420" 
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
-    <Border Background="Beige" CornerRadius="20">
+    <Border Background="Beige">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -59,11 +59,18 @@
                     ToolTip="Sign up as new user" VerticalAlignment="Center"
                     FontSize="20" Background="White" FontWeight="Medium" 
                     Margin="159,0,159,0" Grid.Row="6" x:Name="btn_CreateUser" 
-                    Click="btn_CreateUser_Click"
+                    Click="btn_CreateUser_Click" 
                     BorderBrush="DarkGray" Foreground="DarkGray"/>
 
             <DatePicker x:Name="Age_DOB" HorizontalAlignment="Center" Grid.Row="5" 
                         VerticalAlignment="Center" Text="Date of birth" ToolTip="Select your date of birth"/>
+
+            <Button x:Name="Back" Style="{DynamicResource RoundedButton}" Content="Back" 
+                    HorizontalAlignment="Left" 
+                    Margin="10,10,0,0" VerticalAlignment="Top"
+                    ToolTip="Go back to login window" Click="Back_Click"
+                    BorderBrush="DarkGray" Foreground="DarkGray"
+                    Background="White" FontSize="10" FontWeight="Medium" Height="18" Width="50"/>
 
         </Grid>
     </Border>
